@@ -1,0 +1,12 @@
+.selectLabel {
+  margin-right: 0.5rem;
+}
+
+.label {
+  height: 2rem;
+  border-radius: 5px;
+  border: none;
+  width: 6.25rem;
+  font-weight: 600;
+  padding-left: 0.25rem;
+}
