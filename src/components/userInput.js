@@ -1,18 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import styles from "./userInput.module.css";
-import Button from "../components/UI/button";
+import TotalSumContext from "../store/totalSum-context";
 
-function UserInput({ sendData, resetData, data }) {
-  const [userInput, setUserInput] = useState("");
+function UserInput() {
+  const kwUsedCtx = useContext(TotalSumContext);
 
   function handleChange(e) {
-    setUserInput(e.target.value);
-    sendData(e.target.value);
-  }
-
-  function handleReset() {
-    setUserInput("");
-    resetData();
+    kwUsedCtx.kwUsedFunc(parseInt(e.target.value));
   }
 
   return (
@@ -23,14 +17,8 @@ function UserInput({ sendData, resetData, data }) {
         type="text"
         placeholder=" kWh"
         onChange={handleChange}
-        value={userInput}
+        value={kwUsedCtx.kwUsed}
       />
-
-      <div>
-        <Button onClick={handleReset} className={styles.resetBtn}>
-          Reset
-        </Button>
-      </div>
     </div>
   );
 }

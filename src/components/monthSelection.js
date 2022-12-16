@@ -10,7 +10,7 @@ function monthSelection() {
   return (
     <div>
       <label htmlFor="month" className={styles.selectLabel}>
-        Choose a Month:
+        Month:
       </label>
 
       <select

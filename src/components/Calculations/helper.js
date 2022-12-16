@@ -199,7 +199,7 @@ export function CalculateTimeOfUse(array, useage) {
     let sum = base + high + low;
     sum += sum * 0.1;
     sum += TimeOfUseServiceCharge;
-    return sum;
+    return Math.round(sum);
   } else if (month === "April") {
     base = (base / 100) * useage * BasePriceApril;
     high = (high / 100) * useage * HighPeakPriceApril;
@@ -207,7 +207,7 @@ export function CalculateTimeOfUse(array, useage) {
     let sum = base + high + low;
     sum += sum * 0.1;
     sum += TimeOfUseServiceCharge;
-    return sum;
+    return Math.round(sum);
   } else if (month === "June") {
     base = (base / 100) * useage * BasePriceJune;
     high = (high / 100) * useage * HighPeakPriceJune;
@@ -215,7 +215,7 @@ export function CalculateTimeOfUse(array, useage) {
     let sum = base + high + low;
     sum += sum * 0.1;
     sum += TimeOfUseServiceCharge;
-    return sum;
+    return Math.round(sum);
   } else if (month === "July") {
     base = (base / 100) * useage * BasePriceJuly;
     high = (high / 100) * useage * HighPeakPriceJuly;
@@ -223,7 +223,7 @@ export function CalculateTimeOfUse(array, useage) {
     let sum = base + high + low;
     sum += sum * 0.1;
     sum += TimeOfUseServiceCharge;
-    return sum;
+    return Math.round(sum);
   } else if (month === "Oct") {
     base = (base / 100) * useage * BasePriceOct;
     high = (high / 100) * useage * HighPeakPriceOct;
@@ -231,6 +231,6 @@ export function CalculateTimeOfUse(array, useage) {
     let sum = base + high + low;
     sum += sum * 0.1;
     sum += TimeOfUseServiceCharge;
-    return sum;
+    return Math.round(sum);
   }
 }

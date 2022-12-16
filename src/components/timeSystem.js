@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   adjustRange,
   CalculateTimeOfUse,
 } from "../components/Calculations/helper";
-import Button from "../components/UI/button";
 import styles from "./timeSystem.module.css";
+import TotalSumContext from "../store/totalSum-context";
 
 const TimeSystem = ({ data }) => {
   const [percent, setPercent] = useState([50, 20, 30]);
   const [totalSum, setTotalSum] = useState(0);
+
+  const sumCtx = useContext(TotalSumContext);
 
   function handleBaseChange(e) {
     let result = adjustRange(+e.target.value, percent, e.target.name);
@@ -90,10 +92,10 @@ const TimeSystem = ({ data }) => {
         <p>{percent[2] + "%"}</p>
       </div>
 
-      <h3>Total Sum: {totalSum}$</h3>
-      <Button onClick={handleCalculate} className={styles.btn}>
+      <h3>Total Sum: $ {sumCtx.totalSumTime}</h3>
+      {/* <Button onClick={handleCalculate} className={styles.btn}>
         Calculate
-      </Button>
+      </Button> */}
     </div>
   );
 };
