@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
+import TotalSumContext from "../store/totalSum-context";
+import styles from "./analysis.module.css";
 
-function analysis() {
-  return <div></div>;
+function Analysis() {
+  const ctx = useContext(TotalSumContext);
+
+  const savings =
+    Math.max(ctx.totalSumTier, ctx.totalSumTime) -
+    Math.min(ctx.totalSumTier, ctx.totalSumTime);
+
+  const bestPlan =
+    ctx.totalSumTier < ctx.totalSumTime ? "Tier System" : "Time Of Use";
+
+  if (ctx.kwUsed) {
+    return (
+      <div className={styles.wrapper}>
+        Based on the average total kWh usage, you can save{" "}
+        <span className={styles.savings}>$ {savings}</span> by switching to{" "}
+        <span className={styles.bestPlan}>{bestPlan} </span>
+        rate plan.
+      </div>
+    );
+  } else {
+    return <></>;
+  }
 }
 
-export default analysis;
+export default Analysis;

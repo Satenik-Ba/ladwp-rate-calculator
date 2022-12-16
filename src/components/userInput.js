@@ -15,7 +15,7 @@ function UserInput() {
 
   return (
     <div className={styles.container}>
-      <p>Total kWh Used: </p>
+      <p>Total kWh Usage: </p>
       <input
         className={styles.userInput}
         type="text"

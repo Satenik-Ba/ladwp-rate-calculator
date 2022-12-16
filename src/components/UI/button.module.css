@@ -2,13 +2,12 @@
   text-decoration: none;
   cursor: pointer;
   font: inherit;
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: 1rem;
   background-color: #0b1348;
   border: 1px solid #040215;
   border-radius: 6px;
   color: #fff;
-  padding: 0.75rem 5rem;
+  padding: 0.75rem 4rem;
   text-align: center;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
 }
