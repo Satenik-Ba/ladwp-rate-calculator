@@ -1,42 +1,37 @@
-import React, { useState, useEffect, useContext } from "react";
-import {
-  adjustRange,
-  CalculateTimeOfUse,
-} from "../components/Calculations/helper";
+import React, { useContext } from "react";
+import { adjustRange } from "../components/Calculations/helper";
 import styles from "./timeSystem.module.css";
 import TotalSumContext from "../store/totalSum-context";
 
-const TimeSystem = ({ data }) => {
-  const [percent, setPercent] = useState([50, 20, 30]);
-  const [totalSum, setTotalSum] = useState(0);
-
+const TimeSystem = () => {
   const sumCtx = useContext(TotalSumContext);
 
   function handleBaseChange(e) {
-    let result = adjustRange(+e.target.value, percent, e.target.name);
-    setPercent(result);
+    let result = adjustRange(
+      +e.target.value,
+      sumCtx.timeOfUsePercentages,
+      e.target.name
+    );
+    sumCtx.timeofuseFunc(result);
   }
 
   function handleHighChange(e) {
-    let result = adjustRange(+e.target.value, percent, e.target.name);
-    setPercent(result);
+    let result = adjustRange(
+      +e.target.value,
+      sumCtx.timeOfUsePercentages,
+      e.target.name
+    );
+    sumCtx.timeofuseFunc(result);
   }
 
   function handleLowChange(e) {
-    let result = adjustRange(+e.target.value, percent, e.target.name);
-    setPercent(result);
+    let result = adjustRange(
+      +e.target.value,
+      sumCtx.timeOfUsePercentages,
+      e.target.name
+    );
+    sumCtx.timeofuseFunc(result);
   }
-  function handleCalculate(e) {
-    e.preventDefault();
-    setTotalSum(Math.round(CalculateTimeOfUse(percent, parseInt(data))));
-  }
-
-  useEffect(() => {
-    if (data === 0) {
-      setPercent([50, 20, 30]);
-      setTotalSum(0);
-    }
-  }, [data]);
 
   return (
     <div className={styles.time_wrapper}>
@@ -52,10 +47,10 @@ const TimeSystem = ({ data }) => {
           min={0}
           max={100}
           step={2}
-          value={percent[0]}
+          value={sumCtx.timeOfUsePercentages[0]}
           onChange={handleBaseChange}
         />
-        <p>{percent[0] + "%"}</p>
+        <p>{sumCtx.timeOfUsePercentages[0] + "%"}</p>
       </div>
 
       <div className={styles.userInput}>
@@ -69,10 +64,10 @@ const TimeSystem = ({ data }) => {
           min="0"
           max="100"
           step="2"
-          value={percent[1]}
+          value={sumCtx.timeOfUsePercentages[1]}
           onChange={handleHighChange}
         />
-        <p>{percent[1] + "%"}</p>
+        <p>{sumCtx.timeOfUsePercentages[1] + "%"}</p>
       </div>
 
       <div className={styles.userInput}>
@@ -86,16 +81,13 @@ const TimeSystem = ({ data }) => {
           min="0"
           max="100"
           step="2"
-          value={percent[2]}
+          value={sumCtx.timeOfUsePercentages[2]}
           onChange={handleLowChange}
         />
-        <p>{percent[2] + "%"}</p>
+        <p>{sumCtx.timeOfUsePercentages[2] + "%"}</p>
       </div>
 
       <h3>Total Sum: $ {sumCtx.totalSumTime}</h3>
-      {/* <Button onClick={handleCalculate} className={styles.btn}>
-        Calculate
-      </Button> */}
     </div>
   );
 };

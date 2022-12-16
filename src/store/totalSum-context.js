@@ -41,7 +41,7 @@ export function TotalSumContextProvider(props) {
     timeofuseFunc: timeOfUsePercHandler,
     kwUsedFunc: kwUsedHandler,
   };
-  console.log(totalSumTimeOfUse);
+
   return (
     <TotalSumContext.Provider value={context}>
       {props.children}
