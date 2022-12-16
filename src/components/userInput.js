@@ -6,6 +6,10 @@ function UserInput() {
   const kwUsedCtx = useContext(TotalSumContext);
 
   function handleChange(e) {
+    if (e.target.value === "") {
+      kwUsedCtx.kwUsedFunc(0);
+      return;
+    }
     kwUsedCtx.kwUsedFunc(parseInt(e.target.value));
   }
 
