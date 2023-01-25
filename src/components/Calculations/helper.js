@@ -233,9 +233,9 @@ export function adjustRange(currVal, array, name) {
   }
 }
 
-export function CalculateTimeOfUse(array, useage) {
+export function CalculateTimeOfUse(perc, useage) {
   if (useage === 0) return [0, 0, 0, 0, 0, 0, 0, 0, 0];
-  let [base, high, low] = array;
+  let [base, high, low] = perc;
 
   if (month === "Jan") {
     base = Math.round((base / 100) * useage);
