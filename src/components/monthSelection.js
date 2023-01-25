@@ -1,10 +1,21 @@
-import React from "react";
-import { monthSelect } from "./Calculations/helper";
+import React, { useContext } from "react";
+import {
+  monthSelect,
+  CalculateTimeOfUse,
+  calculateTiers,
+} from "./Calculations/helper";
+import TotalSumContext from "../store/totalSum-context";
 import styles from "./monthSelection.module.css";
 
-function monthSelection() {
+function MonthSelection() {
+  const sumCtx = useContext(TotalSumContext);
+
   function handleSelect(e) {
     monthSelect(e.target.value);
+    sumCtx.totalSumTierFunc(calculateTiers(sumCtx.kwUsed));
+    sumCtx.totalSumTimeFunc(
+      CalculateTimeOfUse(sumCtx.timeOfUsePercentages, sumCtx.kwUsed)
+    );
   }
 
   return (
@@ -31,4 +42,4 @@ function monthSelection() {
   );
 }
 
-export default monthSelection;
+export default MonthSelection;
