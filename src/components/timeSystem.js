@@ -32,7 +32,6 @@ const TimeSystem = () => {
     );
     sumCtx.timeofuseFunc(result);
   }
-
   return (
     <div className={styles.time_wrapper}>
       <h2>Time Of Use</h2>
@@ -61,9 +60,9 @@ const TimeSystem = () => {
           type="range"
           id="high"
           name="high"
-          min="0"
-          max="100"
-          step="2"
+          min={0}
+          max={100}
+          step={2}
           value={sumCtx.timeOfUsePercentages[1]}
           onChange={handleHighChange}
         />
@@ -78,16 +77,16 @@ const TimeSystem = () => {
           type="range"
           id="low"
           name="low"
-          min="0"
-          max="100"
-          step="2"
+          min={0}
+          max={100}
+          step={2}
           value={sumCtx.timeOfUsePercentages[2]}
           onChange={handleLowChange}
         />
         <p>{sumCtx.timeOfUsePercentages[2] + "%"}</p>
       </div>
 
-      <h3>Total Sum: $ {sumCtx.totalSumTime}</h3>
+      <h3>Total Sum: $ {sumCtx.totalSumTime[8]}</h3>
     </div>
   );
 };

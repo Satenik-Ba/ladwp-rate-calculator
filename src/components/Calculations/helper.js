@@ -44,13 +44,13 @@ export function monthSelect(selectedMonth) {
 }
 
 export function calculateTiers(kwUsed) {
-  let reminderTier2 = null;
-  let reminderTier3 = null;
+  let reminderTier2 = 0;
+  let reminderTier3 = 0;
   let sum = 0;
 
-  let tierOneSelectedPrice = null;
-  let tierTwoSelectedPrice = null;
-  let tierThreeSelectedPrice = null;
+  let tierOneSelectedPrice = 0;
+  let tierTwoSelectedPrice = 0;
+  let tierThreeSelectedPrice = 0;
   if (month === "Jan") {
     tierOneSelectedPrice = TierOnePriceJan;
     tierTwoSelectedPrice = TierTwoPriceJan;
@@ -73,14 +73,37 @@ export function calculateTiers(kwUsed) {
     tierThreeSelectedPrice = TierThreePriceOct;
   }
 
-  if (kwUsed === 0) return 0;
+  if (kwUsed === 0)
+    return [
+      kwUsed,
+      reminderTier2,
+      reminderTier3,
+      tierOneSelectedPrice,
+      tierTwoSelectedPrice,
+      tierThreeSelectedPrice,
+      0,
+      0,
+      0,
+      sum,
+    ];
 
   if (kwUsed <= TierOneAllowence) {
     sum += kwUsed * tierOneSelectedPrice;
     sum += PowerAccessChargeTierOne;
     const SalesTaxes = sum * 0.1;
     sum += SalesTaxes + StateEnergySurcharge;
-    return Math.round(sum);
+    return [
+      kwUsed,
+      0,
+      0,
+      tierOneSelectedPrice,
+      tierTwoSelectedPrice,
+      tierThreeSelectedPrice,
+      PowerAccessChargeTierOne,
+      Math.round(SalesTaxes),
+      StateEnergySurcharge,
+      Math.round(sum),
+    ];
   } else if (kwUsed <= 3000) {
     sum += TierOneAllowence * tierOneSelectedPrice;
     reminderTier2 = kwUsed - TierOneAllowence;
@@ -88,7 +111,18 @@ export function calculateTiers(kwUsed) {
     sum += PowerAccessChargeTierTwo;
     const SalesTaxes = sum * 0.1;
     sum += SalesTaxes + StateEnergySurcharge;
-    return Math.round(sum);
+    return [
+      TierOneAllowence,
+      reminderTier2,
+      0,
+      tierOneSelectedPrice,
+      tierTwoSelectedPrice,
+      tierThreeSelectedPrice,
+      PowerAccessChargeTierTwo,
+      Math.round(SalesTaxes),
+      StateEnergySurcharge,
+      Math.round(sum),
+    ];
   } else if (kwUsed > 3000) {
     sum += TierOneAllowence * tierOneSelectedPrice;
     sum += TierTwoAllowence * tierTwoSelectedPrice;
@@ -97,7 +131,18 @@ export function calculateTiers(kwUsed) {
     sum += PowerAccessChargeTierThree;
     const SalesTaxes = sum * 0.1;
     sum += SalesTaxes + StateEnergySurcharge;
-    return Math.round(sum);
+    return [
+      TierOneAllowence,
+      TierTwoAllowence,
+      reminderTier3,
+      tierOneSelectedPrice,
+      tierTwoSelectedPrice,
+      tierThreeSelectedPrice,
+      PowerAccessChargeTierThree,
+      Math.round(SalesTaxes),
+      StateEnergySurcharge,
+      Math.round(sum),
+    ];
   }
 }
 
@@ -189,48 +234,113 @@ export function adjustRange(currVal, array, name) {
 }
 
 export function CalculateTimeOfUse(array, useage) {
-  if (useage === 0) return 0;
+  if (useage === 0) return [0, 0, 0, 0, 0, 0, 0, 0, 0];
   let [base, high, low] = array;
 
   if (month === "Jan") {
-    base = (base / 100) * useage * BasePriceJan;
-    high = (high / 100) * useage * HighPeakPriceJan;
-    low = (low / 100) * useage * LowPeakPriceJan;
-    let sum = base + high + low;
+    base = Math.round((base / 100) * useage);
+    let baseCalc = base * BasePriceJan;
+    high = Math.round((high / 100) * useage);
+    let highCalc = high * HighPeakPriceJan;
+    low = Math.round((low / 100) * useage);
+    let lowCalc = low * LowPeakPriceJan;
+    let sum = baseCalc + highCalc + lowCalc;
     sum += sum * 0.1;
     sum += TimeOfUseServiceCharge;
-    return Math.round(sum);
+    return [
+      base,
+      high,
+      low,
+      BasePriceJan,
+      HighPeakPriceJan,
+      LowPeakPriceJan,
+      Math.round(sum * 0.1),
+      TimeOfUseServiceCharge,
+      Math.round(sum),
+    ];
   } else if (month === "April") {
-    base = (base / 100) * useage * BasePriceApril;
-    high = (high / 100) * useage * HighPeakPriceApril;
-    low = (low / 100) * useage * LowPeakPriceApril;
-    let sum = base + high + low;
+    base = Math.round((base / 100) * useage);
+    let baseCalc = base * BasePriceApril;
+    high = Math.round((high / 100) * useage);
+    let highCalc = high * HighPeakPriceApril;
+    low = Math.round((low / 100) * useage);
+    let lowCalc = low * LowPeakPriceApril;
+    let sum = baseCalc + highCalc + lowCalc;
     sum += sum * 0.1;
     sum += TimeOfUseServiceCharge;
-    return Math.round(sum);
+    return [
+      base,
+      high,
+      low,
+      BasePriceApril,
+      HighPeakPriceApril,
+      LowPeakPriceApril,
+      Math.round(sum * 0.1),
+      TimeOfUseServiceCharge,
+      Math.round(sum),
+    ];
   } else if (month === "June") {
-    base = (base / 100) * useage * BasePriceJune;
-    high = (high / 100) * useage * HighPeakPriceJune;
-    low = (low / 100) * useage * LowPeakPriceJune;
-    let sum = base + high + low;
+    base = Math.round((base / 100) * useage);
+    let baseCalc = base * BasePriceJune;
+    high = Math.round((high / 100) * useage);
+    let highCalc = high * HighPeakPriceJune;
+    low = Math.round((low / 100) * useage);
+    let lowCalc = low * LowPeakPriceJune;
+    let sum = baseCalc + highCalc + lowCalc;
     sum += sum * 0.1;
     sum += TimeOfUseServiceCharge;
-    return Math.round(sum);
+    return [
+      base,
+      high,
+      low,
+      BasePriceJune,
+      HighPeakPriceJune,
+      LowPeakPriceJune,
+      Math.round(sum * 0.1),
+      TimeOfUseServiceCharge,
+      Math.round(sum),
+    ];
   } else if (month === "July") {
-    base = (base / 100) * useage * BasePriceJuly;
-    high = (high / 100) * useage * HighPeakPriceJuly;
-    low = (low / 100) * useage * LowPeakPriceJuly;
-    let sum = base + high + low;
+    base = Math.round((base / 100) * useage);
+    let baseCalc = base * BasePriceJuly;
+    high = Math.round((high / 100) * useage);
+    let highCalc = high * HighPeakPriceJuly;
+    low = Math.round((low / 100) * useage);
+    let lowCalc = low * LowPeakPriceJuly;
+    let sum = baseCalc + highCalc + lowCalc;
     sum += sum * 0.1;
     sum += TimeOfUseServiceCharge;
-    return Math.round(sum);
+    return [
+      base,
+      high,
+      low,
+      BasePriceJuly,
+      HighPeakPriceJuly,
+      LowPeakPriceJuly,
+      Math.round(sum * 0.1),
+      TimeOfUseServiceCharge,
+      Math.round(sum),
+    ];
   } else if (month === "Oct") {
-    base = (base / 100) * useage * BasePriceOct;
-    high = (high / 100) * useage * HighPeakPriceOct;
-    low = (low / 100) * useage * LowPeakPriceOct;
-    let sum = base + high + low;
+    base = Math.round((base / 100) * useage);
+    let baseCalc = base * BasePriceOct;
+    high = Math.round((high / 100) * useage);
+    let highCalc = high * HighPeakPriceOct;
+    low = Math.round((low / 100) * useage);
+    let lowCalc = low * LowPeakPriceOct;
+    let sum = baseCalc + highCalc + lowCalc;
     sum += sum * 0.1;
     sum += TimeOfUseServiceCharge;
-    return Math.round(sum);
+    return [
+      base,
+      high,
+      low,
+      BasePriceOct,
+      HighPeakPriceOct,
+      LowPeakPriceOct,
+      Math.round(sum * 0.1),
+      TimeOfUseServiceCharge,
+      Math.round(sum),
+    ];
   }
 }

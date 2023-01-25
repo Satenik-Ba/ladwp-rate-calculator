@@ -3,6 +3,12 @@
   background-color: #ffffff;
 }
 
+.pricingWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+}
 .wrapper {
   display: flex;
   justify-content: center;
