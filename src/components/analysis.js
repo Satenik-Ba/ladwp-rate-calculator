@@ -6,8 +6,8 @@ function Analysis() {
   const ctx = useContext(TotalSumContext);
 
   const savings =
-    Math.max(ctx.totalSumTier, ctx.totalSumTime) -
-    Math.min(ctx.totalSumTier, ctx.totalSumTime);
+    Math.max(ctx.totalSumTier[9], ctx.totalSumTime[8]) -
+    Math.min(ctx.totalSumTier[9], ctx.totalSumTime[8]);
 
   const bestPlan =
     ctx.totalSumTier < ctx.totalSumTime ? "Tier System" : "Time Of Use";

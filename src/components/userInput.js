@@ -1,16 +1,21 @@
 import React, { useContext } from "react";
 import styles from "./userInput.module.css";
 import TotalSumContext from "../store/totalSum-context";
+import { calculateTiers, CalculateTimeOfUse } from "./Calculations/helper";
 
 function UserInput() {
-  const kwUsedCtx = useContext(TotalSumContext);
+  const sumCtx = useContext(TotalSumContext);
 
   function handleChange(e) {
     if (e.target.value === "") {
-      kwUsedCtx.kwUsedFunc(0);
+      sumCtx.kwUsedFunc(0);
       return;
     }
-    kwUsedCtx.kwUsedFunc(parseInt(e.target.value));
+    sumCtx.kwUsedFunc(parseInt(e.target.value));
+    sumCtx.totalSumTierFunc(calculateTiers(parseInt(e.target.value)));
+    sumCtx.totalSumTimeFunc(
+      CalculateTimeOfUse(sumCtx.timeOfUsePercentages, parseInt(e.target.value))
+    );
   }
 
   return (
@@ -21,7 +26,7 @@ function UserInput() {
         type="text"
         placeholder=" kWh"
         onChange={handleChange}
-        value={kwUsedCtx.kwUsed}
+        value={sumCtx.kwUsed}
       />
     </div>
   );

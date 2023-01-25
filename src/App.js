@@ -5,20 +5,30 @@ import Input from "./components/userInput";
 import Analysis from "./components/analysis";
 import MonthSelection from "./components/monthSelection";
 import styles from "./app.module.css";
-import Calculate from "../src/components/Calculations/calculate";
 import TimeOfUseRates from "./components/Rates/timeOfUseRates";
+import TierSystemRates from "./components/Rates/tierSystemRates";
+import TimeOfUseTimes from "./components/Rates/timeOfUseTimes";
+import CalculationSummaryTierSystem from "./components/Calculations/calculationSummaryTierSystem";
+import CalculationSummaryTimeOfUse from "./components/Calculations/calculationSummaryTimeOfUse";
 
 function App() {
   return (
     <div className={styles.app}>
       <Input />
+      <div className={styles.pricingWrapper}>
+        <TierSystemRates />
+        <TimeOfUseRates />
+        <TimeOfUseTimes />
+      </div>
+      <div className={styles.wrapper}>
+        <CalculationSummaryTierSystem />
+        <CalculationSummaryTimeOfUse />
+      </div>
       <MonthSelection />
-      <TimeOfUseRates />
       <div className={styles.wrapper}>
         <Tier />
         <Time />
       </div>
-      <Calculate />
       <Analysis />
     </div>
   );

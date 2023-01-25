@@ -2,8 +2,8 @@ import { createContext, useState } from "react";
 
 const TotalSumContext = createContext({
   kwUsed: 0,
-  totalSumTier: 0,
-  totalSumTime: 0,
+  totalSumTier: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  totalSumTime: [0, 0, 0, 0, 0, 0, 0, 0, 0],
   timeOfUsePercentages: [50, 20, 30],
   totalSumTierFunc(sum) {},
   totalSumTimeFunc(sum) {},
@@ -13,8 +13,12 @@ const TotalSumContext = createContext({
 
 export function TotalSumContextProvider(props) {
   const [timeofUsePerc, setTimeOfUsePerc] = useState([50, 20, 30]);
-  const [totalSumTier, setTotalSumTier] = useState(0);
-  const [totalSumTimeOfUse, setTotalSumTimeOfUse] = useState(0);
+  const [totalSumTier, setTotalSumTier] = useState([
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  ]);
+  const [totalSumTimeOfUse, setTotalSumTimeOfUse] = useState([
+    0, 0, 0, 0, 0, 0, 0, 0, 0,
+  ]);
   const [kwUsed, setKwUsed] = useState(0);
 
   function totalSumTierHandler(sum) {
