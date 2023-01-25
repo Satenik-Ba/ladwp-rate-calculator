@@ -1,4 +1,6 @@
 .wrapper {
   margin: 4rem auto;
   width: 20rem !important;
+  margin: 2rem;
+  box-shadow: 2px 2px 4px 4px rgba(65, 90, 119, 0.5) !important;
 }
