@@ -1,5 +1,8 @@
 import React, { useContext } from "react";
-import { adjustRange } from "../components/Calculations/helper";
+import {
+  adjustRange,
+  CalculateTimeOfUse,
+} from "../components/Calculations/helper";
 import styles from "./timeSystem.module.css";
 import TotalSumContext from "../store/totalSum-context";
 
@@ -13,6 +16,7 @@ const TimeSystem = () => {
       e.target.name
     );
     sumCtx.timeofuseFunc(result);
+    sumCtx.totalSumTimeFunc(CalculateTimeOfUse(result, sumCtx.kwUsed));
   }
 
   function handleHighChange(e) {
@@ -22,6 +26,7 @@ const TimeSystem = () => {
       e.target.name
     );
     sumCtx.timeofuseFunc(result);
+    sumCtx.totalSumTimeFunc(CalculateTimeOfUse(result, sumCtx.kwUsed));
   }
 
   function handleLowChange(e) {
@@ -31,6 +36,7 @@ const TimeSystem = () => {
       e.target.name
     );
     sumCtx.timeofuseFunc(result);
+    sumCtx.totalSumTimeFunc(CalculateTimeOfUse(result, sumCtx.kwUsed));
   }
   return (
     <div className={styles.time_wrapper}>
