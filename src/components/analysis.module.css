@@ -1,17 +1,24 @@
 .wrapper {
+  width: 40%;
   margin: 0.25rem auto;
   padding: 0.25rem 1rem;
   color: #18222d;
+  border: 1px solid #415a77;
+  box-shadow: 3px 3px 2px #97a8bb;
 }
 
 .savings {
-  background-color: #415a77;
+  background-color: rgba(65, 90, 119, 0.9);
+  border-radius: 3px;
   color: white;
   padding: 0.135rem;
+  margin: 0.135rem;
 }
 
 .bestPlan {
-  background-color: #415a77;
+  background-color: rgba(65, 90, 119, 0.9);
+  border-radius: 3px;
   color: white;
   padding: 0.135rem;
+  margin: 0.155rem;
 }

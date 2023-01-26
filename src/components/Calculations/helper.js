@@ -14,7 +14,6 @@ import {
   TierOnePriceOct,
   TierTwoPriceOct,
   TierThreePriceOct,
-  StateEnergySurcharge,
   PowerAccessChargeTierThree,
   HighPeakPriceJan,
   LowPeakPriceJan,
@@ -91,7 +90,7 @@ export function calculateTiers(kwUsed) {
     sum += kwUsed * tierOneSelectedPrice;
     sum += PowerAccessChargeTierOne;
     const SalesTaxes = sum * 0.1;
-    sum += SalesTaxes + StateEnergySurcharge;
+    sum += SalesTaxes + kwUsed * 0.0003;
     return [
       kwUsed,
       0,
@@ -101,7 +100,7 @@ export function calculateTiers(kwUsed) {
       tierThreeSelectedPrice,
       PowerAccessChargeTierOne,
       Math.round(SalesTaxes),
-      StateEnergySurcharge,
+      Math.round(kwUsed * 0.0003 * 100) / 100,
       Math.round(sum),
     ];
   } else if (kwUsed <= 3000) {
@@ -110,7 +109,7 @@ export function calculateTiers(kwUsed) {
     sum += reminderTier2 * tierTwoSelectedPrice;
     sum += PowerAccessChargeTierTwo;
     const SalesTaxes = sum * 0.1;
-    sum += SalesTaxes + StateEnergySurcharge;
+    sum += SalesTaxes + kwUsed * 0.0003;
     return [
       TierOneAllowence,
       reminderTier2,
@@ -120,7 +119,7 @@ export function calculateTiers(kwUsed) {
       tierThreeSelectedPrice,
       PowerAccessChargeTierTwo,
       Math.round(SalesTaxes),
-      StateEnergySurcharge,
+      Math.round(kwUsed * 0.0003 * 100) / 100,
       Math.round(sum),
     ];
   } else if (kwUsed > 3000) {
@@ -130,7 +129,7 @@ export function calculateTiers(kwUsed) {
     sum += reminderTier3 * tierThreeSelectedPrice;
     sum += PowerAccessChargeTierThree;
     const SalesTaxes = sum * 0.1;
-    sum += SalesTaxes + StateEnergySurcharge;
+    sum += SalesTaxes + kwUsed * 0.0003;
     return [
       TierOneAllowence,
       TierTwoAllowence,
@@ -140,7 +139,7 @@ export function calculateTiers(kwUsed) {
       tierThreeSelectedPrice,
       PowerAccessChargeTierThree,
       Math.round(SalesTaxes),
-      StateEnergySurcharge,
+      Math.round(kwUsed * 0.0003 * 100) / 100,
       Math.round(sum),
     ];
   }
@@ -245,8 +244,10 @@ export function CalculateTimeOfUse(perc, useage) {
     low = Math.round((low / 100) * useage);
     let lowCalc = low * LowPeakPriceJan;
     let sum = baseCalc + highCalc + lowCalc;
-    sum += sum * 0.1;
+    let tax = sum * 0.1;
+    sum += tax;
     sum += TimeOfUseServiceCharge;
+    sum += useage * 0.0003;
     return [
       base,
       high,
@@ -254,7 +255,7 @@ export function CalculateTimeOfUse(perc, useage) {
       BasePriceJan,
       HighPeakPriceJan,
       LowPeakPriceJan,
-      Math.round(sum * 0.1),
+      Math.round(tax),
       TimeOfUseServiceCharge,
       Math.round(sum),
     ];
@@ -266,8 +267,10 @@ export function CalculateTimeOfUse(perc, useage) {
     low = Math.round((low / 100) * useage);
     let lowCalc = low * LowPeakPriceApril;
     let sum = baseCalc + highCalc + lowCalc;
-    sum += sum * 0.1;
+    let tax = sum * 0.1;
+    sum += tax;
     sum += TimeOfUseServiceCharge;
+    sum += useage * 0.0003;
     return [
       base,
       high,
@@ -275,7 +278,7 @@ export function CalculateTimeOfUse(perc, useage) {
       BasePriceApril,
       HighPeakPriceApril,
       LowPeakPriceApril,
-      Math.round(sum * 0.1),
+      Math.round(tax),
       TimeOfUseServiceCharge,
       Math.round(sum),
     ];
@@ -287,8 +290,10 @@ export function CalculateTimeOfUse(perc, useage) {
     low = Math.round((low / 100) * useage);
     let lowCalc = low * LowPeakPriceJune;
     let sum = baseCalc + highCalc + lowCalc;
-    sum += sum * 0.1;
+    let tax = sum * 0.1;
+    sum += tax;
     sum += TimeOfUseServiceCharge;
+    sum += useage * 0.0003;
     return [
       base,
       high,
@@ -296,7 +301,7 @@ export function CalculateTimeOfUse(perc, useage) {
       BasePriceJune,
       HighPeakPriceJune,
       LowPeakPriceJune,
-      Math.round(sum * 0.1),
+      Math.round(tax),
       TimeOfUseServiceCharge,
       Math.round(sum),
     ];
@@ -308,8 +313,10 @@ export function CalculateTimeOfUse(perc, useage) {
     low = Math.round((low / 100) * useage);
     let lowCalc = low * LowPeakPriceJuly;
     let sum = baseCalc + highCalc + lowCalc;
-    sum += sum * 0.1;
+    let tax = sum * 0.1;
+    sum += tax;
     sum += TimeOfUseServiceCharge;
+    sum += useage * 0.0003;
     return [
       base,
       high,
@@ -317,7 +324,7 @@ export function CalculateTimeOfUse(perc, useage) {
       BasePriceJuly,
       HighPeakPriceJuly,
       LowPeakPriceJuly,
-      Math.round(sum * 0.1),
+      Math.round(tax),
       TimeOfUseServiceCharge,
       Math.round(sum),
     ];
@@ -329,8 +336,10 @@ export function CalculateTimeOfUse(perc, useage) {
     low = Math.round((low / 100) * useage);
     let lowCalc = low * LowPeakPriceOct;
     let sum = baseCalc + highCalc + lowCalc;
-    sum += sum * 0.1;
+    let tax = sum * 0.1;
+    sum += tax;
     sum += TimeOfUseServiceCharge;
+    sum += useage * 0.0003;
     return [
       base,
       high,
@@ -338,7 +347,7 @@ export function CalculateTimeOfUse(perc, useage) {
       BasePriceOct,
       HighPeakPriceOct,
       LowPeakPriceOct,
-      Math.round(sum * 0.1),
+      Math.round(tax),
       TimeOfUseServiceCharge,
       Math.round(sum),
     ];
