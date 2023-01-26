@@ -1,5 +1,6 @@
 .wrapper {
-  padding: 1rem;
+  padding: 0rem;
+  box-shadow: 2px 2px 4px 4px rgba(65, 90, 119, 0.5) !important;
 }
 .btn {
   margin: 1rem !important;
@@ -7,4 +8,12 @@
   border: 1px solid #25384d !important;
   background-color: #415a77 !important;
   color: #fff !important;
+}
+
+.header {
+  color: #25384d;
+  font-weight: 600;
+  padding: 0.4rem;
+  margin-top: 0.5rem;
+  align-self: center;
 }
