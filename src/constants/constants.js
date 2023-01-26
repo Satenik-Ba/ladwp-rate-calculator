@@ -23,7 +23,6 @@ export const TierTwoAllowence = 2000;
 export const PowerAccessChargeTierThree = 45.4;
 export const PowerAccessChargeTierTwo = 15.8;
 export const PowerAccessChargeTierOne = 4.6;
-export const StateEnergySurcharge = 1.43;
 
 export const HighPeakPriceJan = 0.22364;
 export const LowPeakPriceJan = 0.22364;

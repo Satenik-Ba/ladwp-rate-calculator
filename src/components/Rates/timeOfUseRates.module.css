@@ -1,3 +1,11 @@
 .wrapper {
   padding: 1rem;
 }
+
+.btn {
+  margin: 1rem !important;
+  border-radius: 5px !important;
+  border: 1px solid #25384d !important;
+  background-color: #415a77 !important;
+  color: #fff !important;
+}

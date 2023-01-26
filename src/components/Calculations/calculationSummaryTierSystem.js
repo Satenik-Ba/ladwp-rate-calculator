@@ -12,33 +12,30 @@ import TotalSumContext from "../../store/totalSum-context";
 export default function CalculationSummaryTierSystem() {
   const sumCtx = useContext(TotalSumContext);
 
-  function createData(category, amount) {
-    return { category, amount };
+  function createData(category, calculation, amount) {
+    return { category, calculation, amount };
   }
 
   const categoryBreakdown = [
     createData(
       "Tier 1",
-      `${sumCtx.totalSumTier[0]}kWh x ${sumCtx.totalSumTier[3]} :  ${Math.round(
-        sumCtx.totalSumTier[0] * sumCtx.totalSumTier[3]
-      )}`
+      `${sumCtx.totalSumTier[0]}kWh x ${sumCtx.totalSumTier[3]}`,
+      `$${Math.round(sumCtx.totalSumTier[0] * sumCtx.totalSumTier[3])}`
     ),
     createData(
       "Tier 2",
-      `${sumCtx.totalSumTier[1]}kWh x ${
-        sumCtx.totalSumTier[4]
-      }  :  ${Math.round(sumCtx.totalSumTier[1] * sumCtx.totalSumTier[4])}`
+      `${sumCtx.totalSumTier[1]}kWh x ${sumCtx.totalSumTier[4]}`,
+      `$${Math.round(sumCtx.totalSumTier[1] * sumCtx.totalSumTier[4])}`
     ),
     createData(
       "Tier 3",
-      `${sumCtx.totalSumTier[2]}kWh x ${
-        sumCtx.totalSumTier[5]
-      }  :  ${Math.round(sumCtx.totalSumTier[2] * sumCtx.totalSumTier[5])}`
+      `${sumCtx.totalSumTier[2]}kWh x ${sumCtx.totalSumTier[5]}`,
+      `$${Math.round(sumCtx.totalSumTier[2] * sumCtx.totalSumTier[5])}`
     ),
-    createData("Power Access Charge", `$ ${sumCtx.totalSumTier[6]}`),
-    createData("Tax", `$ ${sumCtx.totalSumTier[7]}`),
-    createData("State Energy Surchage", `$ ${sumCtx.totalSumTier[8]}`),
-    createData("Sum", `$ ${sumCtx.totalSumTier[9]}`),
+    createData("Power Access Charge", ``, `$ ${sumCtx.totalSumTier[6]}`),
+    createData("Tax", ``, `$${sumCtx.totalSumTier[7]}`),
+    createData("State Energy Surchage", ``, `$${sumCtx.totalSumTier[8]}`),
+    createData("Sum", ``, `$${sumCtx.totalSumTier[9]}`),
   ];
 
   return (
@@ -47,7 +44,8 @@ export default function CalculationSummaryTierSystem() {
       <Table sx={{ maxWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Category </TableCell>
+            <TableCell align="center">Category </TableCell>
+            <TableCell align="center">kWh x Price </TableCell>
             <TableCell align="center">Amount</TableCell>
           </TableRow>
         </TableHead>
@@ -61,6 +59,7 @@ export default function CalculationSummaryTierSystem() {
               <TableCell component="th" scope="row">
                 {category.category}
               </TableCell>
+              <TableCell align="center">{category.calculation}</TableCell>
               <TableCell align="center">{category.amount}</TableCell>
             </TableRow>
           ))}

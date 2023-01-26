@@ -30,7 +30,6 @@ function TimeOfUseRates() {
   return (
     <div className={styles.wrapper}>
       {" "}
-      <h2>Time Periods</h2>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableBody>

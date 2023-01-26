@@ -7,7 +7,6 @@ import MonthSelection from "./components/monthSelection";
 import styles from "./app.module.css";
 import TimeOfUseRates from "./components/Rates/timeOfUseRates";
 import TierSystemRates from "./components/Rates/tierSystemRates";
-import TimeOfUseTimes from "./components/Rates/timeOfUseTimes";
 import CalculationSummaryTierSystem from "./components/Calculations/calculationSummaryTierSystem";
 import CalculationSummaryTimeOfUse from "./components/Calculations/calculationSummaryTimeOfUse";
 import TotalSumContext from "./store/totalSum-context";
@@ -17,11 +16,10 @@ function App() {
   return (
     <div className={styles.app}>
       <Input />
-      {/* <div className={styles.pricingWrapper}>
+      <div className={styles.pricingWrapper}>
         <TierSystemRates />
         <TimeOfUseRates />
-        <TimeOfUseTimes />
-      </div> */}
+      </div>
       <MonthSelection />
       <div className={styles.wrapper}>
         {sumCtx.kwUsed !== 0 && <CalculationSummaryTierSystem />}

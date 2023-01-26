@@ -1,6 +1,12 @@
 .wrapper {
-  margin: 4rem auto;
-  width: 20rem !important;
+  background-color: rgba(65, 90, 119, 0.1) !important;
+  width: 30rem !important;
+  height: 32rem !important;
   margin: 2rem;
+  padding-top: 2rem !important;
   box-shadow: 2px 2px 4px 4px rgba(65, 90, 119, 0.5) !important;
+}
+
+.wrapper h3 {
+  padding: 0.2rem;
 }
