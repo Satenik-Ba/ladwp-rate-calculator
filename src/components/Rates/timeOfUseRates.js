@@ -27,10 +27,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import styles from "./timeOfUseRates.module.css";
-import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import ToggleButton from "@mui/material/ToggleButton";
 
@@ -42,21 +40,6 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1),
   },
 }));
-
-function BootstrapDialogTitle(props) {
-  const { children, onClose, ...other } = props;
-
-  return (
-    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
-      {children}
-    </DialogTitle>
-  );
-}
-
-BootstrapDialogTitle.propTypes = {
-  children: PropTypes.node,
-  onClose: PropTypes.func.isRequired,
-};
 
 function createData(month, serviceCharge, highPeak, lowPeak, base) {
   return { month, serviceCharge, highPeak, lowPeak, base };
@@ -126,13 +109,8 @@ export default function TimeOfUseRates() {
         open={open}
         maxWidth="750"
       >
-        <BootstrapDialogTitle
-          id="customized-dialog-title"
-          onClose={handleClose}
-        >
-          Time Of Use Residential Rates
-        </BootstrapDialogTitle>
-        <DialogContent dividers>
+        <h2 className={styles.header}>Time of Use Residential Rates</h2>
+        <DialogContent>
           <div className={styles.wrapper}>
             {" "}
             <TableContainer component={Paper}>

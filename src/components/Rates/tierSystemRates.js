@@ -27,11 +27,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import styles from "./tierSystemRates.module.css";
-import PropTypes from "prop-types";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -111,21 +109,6 @@ const months = [
   ),
 ];
 
-function BootstrapDialogTitle(props) {
-  const { children, onClose, ...other } = props;
-
-  return (
-    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
-      {children}
-    </DialogTitle>
-  );
-}
-
-BootstrapDialogTitle.propTypes = {
-  children: PropTypes.node,
-  onClose: PropTypes.func.isRequired,
-};
-
 export default function TierSystemRate() {
   const [open, setOpen] = React.useState(false);
 
@@ -151,13 +134,10 @@ export default function TierSystemRate() {
         open={open}
         maxWidth="750"
       >
-        <BootstrapDialogTitle
-          id="customized-dialog-title"
-          onClose={handleClose}
-        >
+        <h2 className={styles.header}>
           Tier System Standard Residential Rates
-        </BootstrapDialogTitle>
-        <DialogContent dividers>
+        </h2>
+        <DialogContent>
           <div className={styles.wrapper}>
             {" "}
             <TableContainer component={Paper}>
