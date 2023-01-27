@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/ladwp-price-per-kWh/static/css/main.55138372.css",
-    "main.js": "/ladwp-price-per-kWh/static/js/main.10d4c68d.js",
+    "main.css": "/ladwp-price-per-kWh/static/css/main.edafe2fb.css",
+    "main.js": "/ladwp-price-per-kWh/static/js/main.e367d9f4.js",
     "index.html": "/ladwp-price-per-kWh/index.html",
-    "main.55138372.css.map": "/ladwp-price-per-kWh/static/css/main.55138372.css.map",
-    "main.10d4c68d.js.map": "/ladwp-price-per-kWh/static/js/main.10d4c68d.js.map"
+    "main.edafe2fb.css.map": "/ladwp-price-per-kWh/static/css/main.edafe2fb.css.map",
+    "main.e367d9f4.js.map": "/ladwp-price-per-kWh/static/js/main.e367d9f4.js.map"
   },
   "entrypoints": [
-    "static/css/main.55138372.css",
-    "static/js/main.10d4c68d.js"
+    "static/css/main.edafe2fb.css",
+    "static/js/main.e367d9f4.js"
   ]
 }
