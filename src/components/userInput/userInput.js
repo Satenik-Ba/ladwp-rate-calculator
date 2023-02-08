@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styles from "./userInput.module.css";
-import TotalSumContext from "../store/totalSum-context";
-import { calculateTiers, CalculateTimeOfUse } from "./Calculations/helper";
+import TotalSumContext from "../../store/totalSum-context";
+import { calculateTiers, CalculateTimeOfUse } from "../Calculations/helper";
 
 function UserInput() {
   const sumCtx = useContext(TotalSumContext);
@@ -25,7 +25,7 @@ function UserInput() {
   }
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <label htmlFor="kwhInput"> Total KWh Usage</label>
       <input
         id="kwhInput"

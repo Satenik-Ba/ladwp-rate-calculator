@@ -1,3 +1,7 @@
+.header {
+  padding-left: 1rem;
+}
+
 .period_labels {
   display: flex;
   align-items: center;
