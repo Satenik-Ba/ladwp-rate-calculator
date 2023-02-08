@@ -6,7 +6,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import styles from "./calculationSummary.module.css";
+import styles from "../calculationSummary.module.css";
 import TotalSumContext from "../../store/totalSum-context";
 
 export default function CalculationSummaryTierSystem() {

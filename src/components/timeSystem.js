@@ -1,100 +1,76 @@
 import React, { useContext } from "react";
-import {
-  adjustRange,
-  CalculateTimeOfUse,
-} from "../components/Calculations/helper";
-import styles from "./timeSystem.module.css";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import styles from "./calculationSummary.module.css";
 import TotalSumContext from "../store/totalSum-context";
 
-const TimeSystem = () => {
+export default function CalculationSummaryTimeOfUse() {
   const sumCtx = useContext(TotalSumContext);
 
-  function handleBaseChange(e) {
-    let result = adjustRange(
-      +e.target.value,
-      sumCtx.timeOfUsePercentages,
-      e.target.name
-    );
-    sumCtx.timeofuseFunc(result);
-    sumCtx.totalSumTimeFunc(CalculateTimeOfUse(result, sumCtx.kwUsed));
+  function createData(category, calculation, amount) {
+    return { category, calculation, amount };
   }
 
-  function handleHighChange(e) {
-    let result = adjustRange(
-      +e.target.value,
-      sumCtx.timeOfUsePercentages,
-      e.target.name
-    );
-    sumCtx.timeofuseFunc(result);
-    sumCtx.totalSumTimeFunc(CalculateTimeOfUse(result, sumCtx.kwUsed));
-  }
+  const categoryBreakdown = [
+    createData(
+      "Base",
+      `${sumCtx.totalSumTime.basePerc}kWh x ${sumCtx.totalSumTime.basePrice}`,
+      `$ ${sumCtx.totalSumTime.baseCalc}`
+    ),
+    createData(
+      "High",
+      `${sumCtx.totalSumTime.highPerc}kWh x ${sumCtx.totalSumTime.highPeakPrice}`,
+      `$${sumCtx.totalSumTime.highCalc}`
+    ),
+    createData(
+      "Low",
+      `${sumCtx.totalSumTime.lowCalc}kWh x ${sumCtx.totalSumTime.lowPeakPrice} `,
+      `$${sumCtx.totalSumTime.lowCalc}`
+    ),
+    createData(
+      "Time of Use Service Charge",
+      ``,
+      `$${sumCtx.totalSumTime.timeOfUseServiceCharge}`
+    ),
+    createData("Tax", ``, `$${sumCtx.totalSumTime.tax}`),
+    createData(
+      "State Energy Surchage",
+      ``,
+      `$${sumCtx.totalSumTime.stateEnergySurchage}`
+    ),
+    createData("Sum", ``, `$${sumCtx.totalSumTime.sum}`),
+  ];
 
-  function handleLowChange(e) {
-    let result = adjustRange(
-      +e.target.value,
-      sumCtx.timeOfUsePercentages,
-      e.target.name
-    );
-    sumCtx.timeofuseFunc(result);
-    sumCtx.totalSumTimeFunc(CalculateTimeOfUse(result, sumCtx.kwUsed));
-  }
   return (
-    <div className={styles.time_wrapper}>
-      <h2>Time Of Use</h2>
-      <div className={styles.userInput}>
-        <label htmlFor="base" className={styles.label}>
-          Base
-        </label>
-        <input
-          type="range"
-          id="base"
-          name="base"
-          min={0}
-          max={100}
-          step={2}
-          value={sumCtx.timeOfUsePercentages[0]}
-          onChange={handleBaseChange}
-        />
-        <p>{sumCtx.timeOfUsePercentages[0] + "%"}</p>
-      </div>
+    <TableContainer component={Paper} className={styles.wrapper}>
+      <h3>Time of Use Price Summary</h3>
+      <Table sx={{ maxWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell align="left">Category</TableCell>
+            <TableCell align="left">kWh x Price</TableCell>
+            <TableCell align="right">Amount</TableCell>
+          </TableRow>
+        </TableHead>
 
-      <div className={styles.userInput}>
-        <label htmlFor="high" className={styles.label}>
-          High Peak
-        </label>
-        <input
-          type="range"
-          id="high"
-          name="high"
-          min={0}
-          max={100}
-          step={2}
-          value={sumCtx.timeOfUsePercentages[1]}
-          onChange={handleHighChange}
-        />
-        <p>{sumCtx.timeOfUsePercentages[1] + "%"}</p>
-      </div>
-
-      <div className={styles.userInput}>
-        <label htmlFor="low" className={styles.label}>
-          Low Peak
-        </label>
-        <input
-          type="range"
-          id="low"
-          name="low"
-          min={0}
-          max={100}
-          step={2}
-          value={sumCtx.timeOfUsePercentages[2]}
-          onChange={handleLowChange}
-        />
-        <p>{sumCtx.timeOfUsePercentages[2] + "%"}</p>
-      </div>
-
-      <h3>Total Sum: $ {sumCtx.totalSumTime[8]}</h3>
-    </div>
+        <TableBody>
+          {categoryBreakdown.map((category) => (
+            <TableRow
+              key={category.category}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+            >
+              <TableCell align="left">{category.category}</TableCell>
+              <TableCell align="left">{`${category.calculation}`}</TableCell>
+              <TableCell align="right">{`${category.amount}`}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
-};
-
-export default TimeSystem;
+}

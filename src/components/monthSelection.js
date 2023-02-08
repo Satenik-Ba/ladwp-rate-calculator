@@ -12,7 +12,9 @@ function MonthSelection() {
 
   function handleSelect(e) {
     monthSelect(e.target.value);
-    sumCtx.totalSumTierFunc(calculateTiers(sumCtx.kwUsed));
+    sumCtx.totalSumTierFunc(
+      calculateTiers(sumCtx.kwUsed, sumCtx.tier, sumCtx.zone)
+    );
     sumCtx.totalSumTimeFunc(
       CalculateTimeOfUse(sumCtx.timeOfUsePercentages, sumCtx.kwUsed)
     );

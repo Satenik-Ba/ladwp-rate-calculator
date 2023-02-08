@@ -1,12 +1,13 @@
 .app {
   text-align: center;
   background-color: #ffffff;
+  font-size: 20px;
 }
 
 .pricingWrapper {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: top;
   margin: 2rem;
 }
 .wrapper {

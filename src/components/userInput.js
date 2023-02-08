@@ -9,10 +9,16 @@ function UserInput() {
   function handleChange(e) {
     if (e.target.value === "") {
       sumCtx.kwUsedFunc(0);
+      sumCtx.totalSumTierFunc(calculateTiers(0), sumCtx.tier, sumCtx.zone);
+      sumCtx.totalSumTimeFunc(
+        CalculateTimeOfUse(sumCtx.timeOfUsePercentages, parseInt(0))
+      );
       return;
     }
     sumCtx.kwUsedFunc(parseInt(e.target.value));
-    sumCtx.totalSumTierFunc(calculateTiers(parseInt(e.target.value)));
+    sumCtx.totalSumTierFunc(
+      calculateTiers(parseInt(e.target.value), sumCtx.tier, sumCtx.zone)
+    );
     sumCtx.totalSumTimeFunc(
       CalculateTimeOfUse(sumCtx.timeOfUsePercentages, parseInt(e.target.value))
     );
@@ -20,10 +26,11 @@ function UserInput() {
 
   return (
     <div className={styles.container}>
-      <p>Total kWh Usage: </p>
+      <h1>Total kWh Usage</h1>
       <input
         className={styles.userInput}
         type="text"
+        maxLength="6"
         placeholder=" kWh"
         onChange={handleChange}
         value={sumCtx.kwUsed}

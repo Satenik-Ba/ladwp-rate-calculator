@@ -1,15 +1,16 @@
 .wrapper {
   padding: 0rem;
+  margin: 1rem 1rem 1rem 1rem;
   box-shadow: 2px 2px 4px 4px rgba(65, 90, 119, 0.5) !important;
 }
 
-.btn {
+/* .btn {
   margin: 1rem 0rem !important;
   border-radius: 5px !important;
   border: 1px solid #25384d !important;
   background-color: #415a77 !important;
   color: #fff !important;
-}
+} */
 
 .header {
   color: #25384d;

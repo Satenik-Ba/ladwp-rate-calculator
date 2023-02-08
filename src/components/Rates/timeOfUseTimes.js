@@ -31,14 +31,15 @@ function TimeOfUseRates() {
     <div className={styles.wrapper}>
       {" "}
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <h2 className={styles.header}>Time of Use Time Periods</h2>
+        <Table sx={{ maxWidth: 640 }} aria-label="simple table">
           <TableBody>
             {months.map((peakPeriod) => (
               <TableRow
                 key={peakPeriod.peakPeriod}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell component="th" scope="row">
+                <TableCell component="th" scope="row" align="left">
                   {peakPeriod.peakPeriod}
                 </TableCell>
                 <TableCell align="left">{peakPeriod.times}</TableCell>

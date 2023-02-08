@@ -33,8 +33,12 @@ import {
   TimeOfUseServiceCharge,
   PowerAccessChargeTierOne,
   PowerAccessChargeTierTwo,
-  TierOneAllowence,
-  TierTwoAllowence,
+  TierOneAllowenceZone1,
+  TierTwoAllowenceZone1,
+  TierThreeAllowenceZone1,
+  TierOneAllowenceZone2,
+  TierTwoAllowenceZone2,
+  TierThreeAllowenceZone2,
 } from "../../constants/constants";
 
 let month = "Jan";
@@ -42,14 +46,45 @@ export function monthSelect(selectedMonth) {
   month = selectedMonth;
 }
 
-export function calculateTiers(kwUsed) {
+export function calculateTiers(kwUsed, tier, zone) {
   let reminderTier2 = 0;
   let reminderTier3 = 0;
   let sum = 0;
+  let tierOneAllowence;
+  let tierTwoAllowence;
+  let tierThreeAllowence;
 
   let tierOneSelectedPrice = 0;
   let tierTwoSelectedPrice = 0;
   let tierThreeSelectedPrice = 0;
+
+  if (zone === "zone1") {
+    tierOneAllowence = TierOneAllowenceZone1;
+    tierTwoAllowence = TierTwoAllowenceZone1;
+    tierThreeAllowence = TierThreeAllowenceZone1;
+  } else if (zone === "zone2") {
+    tierOneAllowence = TierOneAllowenceZone2;
+    tierTwoAllowence = TierTwoAllowenceZone2;
+    tierThreeAllowence = TierThreeAllowenceZone2;
+  }
+
+  if (kwUsed === 0)
+    return {
+      tier1: kwUsed,
+      tier2: reminderTier2,
+      tier3: reminderTier3,
+      tier1Price: tierOneSelectedPrice,
+      tier2Price: tierTwoSelectedPrice,
+      tier3Price: tierThreeSelectedPrice,
+      tier1Calc: 0,
+      tier2Calc: 0,
+      tier3Calc: 0,
+      powerAccessCharge: 0,
+      tax: 0,
+      stateEnergySurcharge: 0,
+      sum: sum,
+    };
+
   if (month === "Jan") {
     tierOneSelectedPrice = TierOnePriceJan;
     tierTwoSelectedPrice = TierTwoPriceJan;
@@ -72,168 +107,113 @@ export function calculateTiers(kwUsed) {
     tierThreeSelectedPrice = TierThreePriceOct;
   }
 
-  if (kwUsed === 0)
-    return [
-      kwUsed,
-      reminderTier2,
-      reminderTier3,
-      tierOneSelectedPrice,
-      tierTwoSelectedPrice,
-      tierThreeSelectedPrice,
-      0,
-      0,
-      0,
-      sum,
-    ];
+  if (kwUsed <= tierOneAllowence) {
+    let tier1Calc = kwUsed * tierOneSelectedPrice;
+    let powerAccessCharge;
+    sum += tier1Calc;
 
-  if (kwUsed <= TierOneAllowence) {
-    sum += kwUsed * tierOneSelectedPrice;
-    sum += PowerAccessChargeTierOne;
+    if (tier === "tier2") {
+      sum += PowerAccessChargeTierTwo;
+      powerAccessCharge = PowerAccessChargeTierTwo;
+    } else if (tier === "tier3") {
+      sum += PowerAccessChargeTierThree;
+      powerAccessCharge = PowerAccessChargeTierThree;
+    } else {
+      sum += PowerAccessChargeTierOne;
+      powerAccessCharge = PowerAccessChargeTierOne;
+    }
+
     const SalesTaxes = sum * 0.1;
     sum += SalesTaxes + kwUsed * 0.0003;
-    return [
-      kwUsed,
-      0,
-      0,
-      tierOneSelectedPrice,
-      tierTwoSelectedPrice,
-      tierThreeSelectedPrice,
-      PowerAccessChargeTierOne,
-      Math.round(SalesTaxes),
-      Math.round(kwUsed * 0.0003 * 100) / 100,
-      Math.round(sum),
-    ];
-  } else if (kwUsed <= 3000) {
-    sum += TierOneAllowence * tierOneSelectedPrice;
-    reminderTier2 = kwUsed - TierOneAllowence;
-    sum += reminderTier2 * tierTwoSelectedPrice;
-    sum += PowerAccessChargeTierTwo;
+    return {
+      tier1: kwUsed,
+      tier2: 0,
+      tier3: 0,
+      tier1Price: tierOneSelectedPrice,
+      tier2Price: tierTwoSelectedPrice,
+      tier3Price: tierThreeSelectedPrice,
+      tier1Calc: tier1Calc.toFixed(2),
+      tier2Calc: 0,
+      tier3Calc: 0,
+      powerAccessCharge: powerAccessCharge.toFixed(2),
+      tax: SalesTaxes.toFixed(2),
+      stateEnergySurcharge: (kwUsed * 0.0003).toFixed(2),
+      sum: sum.toFixed(2),
+    };
+  } else if (kwUsed <= tierOneAllowence + tierTwoAllowence) {
+    let tier1Calc = tierOneAllowence * tierOneSelectedPrice;
+    let powerAccessCharge;
+    reminderTier2 = kwUsed - tierOneAllowence;
+    let tier2Calc = reminderTier2 * tierTwoSelectedPrice;
+    sum += tier1Calc + tier2Calc;
+    if (tier === "tier3") {
+      sum += PowerAccessChargeTierThree;
+      powerAccessCharge = PowerAccessChargeTierThree;
+    } else {
+      sum += PowerAccessChargeTierTwo;
+      powerAccessCharge = PowerAccessChargeTierTwo;
+    }
     const SalesTaxes = sum * 0.1;
     sum += SalesTaxes + kwUsed * 0.0003;
-    return [
-      TierOneAllowence,
-      reminderTier2,
-      0,
-      tierOneSelectedPrice,
-      tierTwoSelectedPrice,
-      tierThreeSelectedPrice,
-      PowerAccessChargeTierTwo,
-      Math.round(SalesTaxes),
-      Math.round(kwUsed * 0.0003 * 100) / 100,
-      Math.round(sum),
-    ];
-  } else if (kwUsed > 3000) {
-    sum += TierOneAllowence * tierOneSelectedPrice;
-    sum += TierTwoAllowence * tierTwoSelectedPrice;
-    reminderTier3 = kwUsed - (TierOneAllowence + TierTwoAllowence);
-    sum += reminderTier3 * tierThreeSelectedPrice;
+    return {
+      tier1: tierOneAllowence,
+      tier2: reminderTier2,
+      tier3: 0,
+      tier1Price: tierOneSelectedPrice,
+      tier2Price: tierTwoSelectedPrice,
+      tier3Price: tierThreeSelectedPrice,
+      tier1Calc: tier1Calc.toFixed(2),
+      tier2Calc: tier2Calc.toFixed(2),
+      tier3Calc: 0,
+      powerAccessCharge: powerAccessCharge.toFixed(2),
+      tax: SalesTaxes.toFixed(2),
+      stateEnergySurcharge: (kwUsed * 0.0003).toFixed(2),
+      sum: sum.toFixed(2),
+    };
+  } else if (kwUsed > tierThreeAllowence) {
+    let tier1Calc = tierOneAllowence * tierOneSelectedPrice;
+    let tier2Calc = tierTwoAllowence * tierTwoSelectedPrice;
+    reminderTier3 = kwUsed - (tierOneAllowence + tierTwoAllowence);
+    let tier3Calc = reminderTier3 * tierThreeSelectedPrice;
+    sum += tier1Calc + tier2Calc + tier3Calc;
     sum += PowerAccessChargeTierThree;
     const SalesTaxes = sum * 0.1;
     sum += SalesTaxes + kwUsed * 0.0003;
-    return [
-      TierOneAllowence,
-      TierTwoAllowence,
-      reminderTier3,
-      tierOneSelectedPrice,
-      tierTwoSelectedPrice,
-      tierThreeSelectedPrice,
-      PowerAccessChargeTierThree,
-      Math.round(SalesTaxes),
-      Math.round(kwUsed * 0.0003 * 100) / 100,
-      Math.round(sum),
-    ];
-  }
-}
-
-export function adjustRange(currVal, array, name) {
-  let [base, high, low] = array;
-  const max = 100;
-  const min = 0;
-
-  if (name === "base") {
-    let diff = currVal - base;
-    base = currVal;
-    if (diff > 0 && high > min && low > min) {
-      high -= diff / 2;
-      low -= diff / 2;
-    }
-    if (diff < 0 && high < max && low < max) {
-      high -= diff / 2;
-      low -= diff / 2;
-    }
-    if (diff > 0 && high > min && low === min) {
-      high -= diff;
-    }
-    if (diff > 0 && low > min && high === min) {
-      low -= diff;
-    }
-    if (diff < 0 && high < max && low === max) {
-      high -= diff;
-    }
-    if (diff < 0 && low < max && high === max) {
-      low -= diff;
-    }
-    return [base, high, low];
-  }
-
-  if (name === "high") {
-    let diff = currVal - high;
-    high = currVal;
-
-    if (diff > 0 && base > min && low > min) {
-      base -= diff / 2;
-      low -= diff / 2;
-    }
-    if (diff < 0 && base < max && low < max) {
-      base -= diff / 2;
-      low -= diff / 2;
-    }
-    if (diff > 0 && base > min && low === min) {
-      base -= diff;
-    }
-    if (diff > 0 && low > min && base === min) {
-      low -= diff;
-    }
-    if (diff < 0 && base < max && low === max) {
-      base -= diff;
-    }
-    if (diff < 0 && low < max && base === max) {
-      low -= diff;
-    }
-
-    return [base, high, low];
-  }
-  if (name === "low") {
-    let diff = currVal - low;
-    low = currVal;
-
-    if (diff > 0 && high > min && base > min) {
-      high -= diff / 2;
-      base -= diff / 2;
-    }
-    if (diff < 0 && high < max && base < max) {
-      high -= diff / 2;
-      base -= diff / 2;
-    }
-    if (diff > 0 && high > min && base === min) {
-      high -= diff;
-    }
-    if (diff > 0 && base > min && high === min) {
-      base -= diff;
-    }
-    if (diff < 0 && high < max && base === max) {
-      high -= diff;
-    }
-    if (diff < 0 && base < max && high === max) {
-      base -= diff;
-    }
-
-    return [base, high, low];
+    return {
+      tier1: tierOneAllowence,
+      tier2: tierTwoAllowence,
+      tier3: reminderTier3,
+      tier1Price: tierOneSelectedPrice,
+      tier2Price: tierTwoSelectedPrice,
+      tier3Price: tierThreeSelectedPrice,
+      tier1Calc: tier1Calc.toFixed(2),
+      tier2Calc: tier2Calc.toFixed(2),
+      tier3Calc: tier3Calc.toFixed(2),
+      powerAccessCharge: PowerAccessChargeTierThree.toFixed(2),
+      tax: SalesTaxes.toFixed(2),
+      stateEnergySurcharge: (kwUsed * 0.0003).toFixed(2),
+      sum: sum.toFixed(2),
+    };
   }
 }
 
 export function CalculateTimeOfUse(perc, useage) {
-  if (useage === 0) return [0, 0, 0, 0, 0, 0, 0, 0, 0];
+  if (useage === 0)
+    return {
+      basePerc: 0,
+      highPerc: 0,
+      lowPerc: 0,
+      baseCalc: 0,
+      highCalc: 0,
+      lowCalc: 0,
+      basePrice: 0,
+      highPeakPrice: 0,
+      lowPeakPrice: 0,
+      tax: 0,
+      timeOfUseServiceCharge: 0,
+      stateEnergySurchage: 0,
+      sum: 0,
+    };
   let [base, high, low] = perc;
 
   if (month === "Jan") {
@@ -248,17 +228,21 @@ export function CalculateTimeOfUse(perc, useage) {
     sum += tax;
     sum += TimeOfUseServiceCharge;
     sum += useage * 0.0003;
-    return [
-      base,
-      high,
-      low,
-      BasePriceJan,
-      HighPeakPriceJan,
-      LowPeakPriceJan,
-      Math.round(tax),
-      TimeOfUseServiceCharge,
-      Math.round(sum),
-    ];
+    return {
+      basePerc: base,
+      highPerc: high,
+      lowPerc: low,
+      baseCalc: baseCalc.toFixed(2),
+      highCalc: highCalc.toFixed(2),
+      lowCalc: lowCalc.toFixed(2),
+      basePrice: BasePriceJan,
+      highPeakPrice: HighPeakPriceJan,
+      lowPeakPrice: LowPeakPriceJan,
+      tax: tax.toFixed(2),
+      timeOfUseServiceCharge: TimeOfUseServiceCharge.toFixed(2),
+      stateEnergySurchage: (useage * 0.0003).toFixed(2),
+      sum: sum.toFixed(2),
+    };
   } else if (month === "April") {
     base = Math.round((base / 100) * useage);
     let baseCalc = base * BasePriceApril;
@@ -271,17 +255,21 @@ export function CalculateTimeOfUse(perc, useage) {
     sum += tax;
     sum += TimeOfUseServiceCharge;
     sum += useage * 0.0003;
-    return [
-      base,
-      high,
-      low,
-      BasePriceApril,
-      HighPeakPriceApril,
-      LowPeakPriceApril,
-      Math.round(tax),
-      TimeOfUseServiceCharge,
-      Math.round(sum),
-    ];
+    return {
+      basePerc: base,
+      highPerc: high,
+      lowPerc: low,
+      baseCalc: baseCalc.toFixed(2),
+      highCalc: highCalc.toFixed(2),
+      lowCalc: lowCalc.toFixed(2),
+      basePrice: BasePriceApril,
+      highPeakPrice: HighPeakPriceApril,
+      lowPeakPrice: LowPeakPriceApril,
+      tax: tax.toFixed(2),
+      timeOfUseServiceCharge: TimeOfUseServiceCharge.toFixed(2),
+      stateEnergySurchage: (useage * 0.0003).toFixed(2),
+      sum: sum.toFixed(2),
+    };
   } else if (month === "June") {
     base = Math.round((base / 100) * useage);
     let baseCalc = base * BasePriceJune;
@@ -294,17 +282,21 @@ export function CalculateTimeOfUse(perc, useage) {
     sum += tax;
     sum += TimeOfUseServiceCharge;
     sum += useage * 0.0003;
-    return [
-      base,
-      high,
-      low,
-      BasePriceJune,
-      HighPeakPriceJune,
-      LowPeakPriceJune,
-      Math.round(tax),
-      TimeOfUseServiceCharge,
-      Math.round(sum),
-    ];
+    return {
+      basePerc: base,
+      highPerc: high,
+      lowPerc: low,
+      baseCalc: baseCalc.toFixed(2),
+      highCalc: highCalc.toFixed(2),
+      lowCalc: lowCalc.toFixed(2),
+      basePrice: BasePriceJune,
+      highPeakPrice: HighPeakPriceJune,
+      lowPeakPrice: LowPeakPriceJune,
+      tax: tax.toFixed(2),
+      timeOfUseServiceCharge: TimeOfUseServiceCharge.toFixed(2),
+      stateEnergySurchage: (useage * 0.0003).toFixed(2),
+      sum: sum.toFixed(2),
+    };
   } else if (month === "July") {
     base = Math.round((base / 100) * useage);
     let baseCalc = base * BasePriceJuly;
@@ -317,17 +309,21 @@ export function CalculateTimeOfUse(perc, useage) {
     sum += tax;
     sum += TimeOfUseServiceCharge;
     sum += useage * 0.0003;
-    return [
-      base,
-      high,
-      low,
-      BasePriceJuly,
-      HighPeakPriceJuly,
-      LowPeakPriceJuly,
-      Math.round(tax),
-      TimeOfUseServiceCharge,
-      Math.round(sum),
-    ];
+    return {
+      basePerc: base,
+      highPerc: high,
+      lowPerc: low,
+      baseCalc: baseCalc.toFixed(2),
+      highCalc: highCalc.toFixed(2),
+      lowCalc: lowCalc.toFixed(2),
+      basePrice: BasePriceJuly,
+      highPeakPrice: HighPeakPriceJuly,
+      lowPeakPrice: LowPeakPriceJuly,
+      tax: tax.toFixed(2),
+      timeOfUseServiceCharge: TimeOfUseServiceCharge.toFixed(2),
+      stateEnergySurchage: (useage * 0.0003).toFixed(2),
+      sum: sum.toFixed(2),
+    };
   } else if (month === "Oct") {
     base = Math.round((base / 100) * useage);
     let baseCalc = base * BasePriceOct;
@@ -340,16 +336,20 @@ export function CalculateTimeOfUse(perc, useage) {
     sum += tax;
     sum += TimeOfUseServiceCharge;
     sum += useage * 0.0003;
-    return [
-      base,
-      high,
-      low,
-      BasePriceOct,
-      HighPeakPriceOct,
-      LowPeakPriceOct,
-      Math.round(tax),
-      TimeOfUseServiceCharge,
-      Math.round(sum),
-    ];
+    return {
+      basePerc: base,
+      highPerc: high,
+      lowPerc: low,
+      baseCalc: baseCalc.toFixed(2),
+      highCalc: highCalc.toFixed(2),
+      lowCalc: lowCalc.toFixed(2),
+      basePrice: BasePriceOct,
+      highPeakPrice: HighPeakPriceOct,
+      lowPeakPrice: LowPeakPriceOct,
+      tax: tax.toFixed(2),
+      timeOfUseServiceCharge: TimeOfUseServiceCharge.toFixed(2),
+      stateEnergySurchage: (useage * 0.0003).toFixed(2),
+      sum: sum.toFixed(2),
+    };
   }
 }

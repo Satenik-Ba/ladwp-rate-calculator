@@ -13,17 +13,18 @@ function Analysis() {
   const ctx = useContext(TotalSumContext);
 
   const savings =
-    Math.max(ctx.totalSumTier[9], ctx.totalSumTime[8]) -
-    Math.min(ctx.totalSumTier[9], ctx.totalSumTime[8]);
+    Math.max(ctx.totalSumTier.sum, ctx.totalSumTime.sum) -
+    Math.min(ctx.totalSumTier.sum, ctx.totalSumTime.sum);
 
   const bestPlan =
-    ctx.totalSumTier[9] < ctx.totalSumTime[8] ? "Tier System" : "Time Of Use";
+    ctx.totalSumTier.sum < ctx.totalSumTime.sum ? "Tier System" : "Time Of Use";
 
   if (ctx.kwUsed) {
     return (
       <Div className={styles.wrapper}>
         Based on the average total kWh usage, you can save{" "}
-        <span className={styles.savings}>$ {savings}</span> by switching to
+        <span className={styles.savings}>$ {savings.toFixed(2)}</span> by
+        switching to
         {""}
         <span className={styles.bestPlan}>{bestPlan} </span> rate plan.
       </Div>

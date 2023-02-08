@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   HighPeakPriceJan,
   LowPeakPriceJan,
@@ -18,7 +18,6 @@ import {
   BasePriceOct,
 } from "../../constants/constants";
 import TimeOfUseTimes from "./timeOfUseTimes";
-import Button from "@mui/material/Button";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -27,19 +26,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import styles from "./timeOfUseRates.module.css";
-import { styled } from "@mui/material/styles";
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import ToggleButton from "@mui/material/ToggleButton";
-
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  "& .MuiDialogContent-root": {
-    padding: theme.spacing(2),
-  },
-  "& .MuiDialogActions-root": {
-    padding: theme.spacing(1),
-  },
-}));
 
 function createData(month, serviceCharge, highPeak, lowPeak, base) {
   return { month, serviceCharge, highPeak, lowPeak, base };
@@ -83,85 +69,55 @@ const months = [
   ),
 ];
 export default function TimeOfUseRates() {
-  const [open, setOpen] = useState(false);
-  const [timePeriodsOpen, setTimePeriodsOpen] = useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-    setTimePeriodsOpen(false);
-  };
-
   return (
     <div>
-      <Button
-        variant="outlined"
-        onClick={handleClickOpen}
-        className={styles.btn}
-      >
-        Time of Use Rates
-      </Button>
-      <BootstrapDialog
-        onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={open}
-        maxWidth="750"
-      >
-        <h2 className={styles.header}>Time of Use Residential Rates</h2>
-        <DialogContent>
-          <div className={styles.wrapper}>
-            {" "}
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell align="center" colSpan={5}>
-                      Year - 2023
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>Month</TableCell>
-                    <TableCell align="right">Service Charge</TableCell>
-                    <TableCell align="right">High Peak</TableCell>
-                    <TableCell align="right">Low Peak</TableCell>
-                    <TableCell align="right">Base</TableCell>
-                  </TableRow>
-                </TableHead>
+      <div className={styles.wrapper}>
+        {" "}
+        <TableContainer component={Paper}>
+          <Table sx={{ maxWidth: 640 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell align="center" colSpan={5}>
+                  <h2 className={styles.header}>
+                    Time of Use Residential Rates
+                  </h2>
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align="center" colSpan={5}>
+                  2022 - 2023
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align="left">Month</TableCell>
+                <TableCell align="center">Service Charge</TableCell>
+                <TableCell align="center">High Peak</TableCell>
+                <TableCell align="center">Low Peak</TableCell>
+                <TableCell align="center">Base</TableCell>
+              </TableRow>
+            </TableHead>
 
-                <TableBody>
-                  {months.map((month) => (
-                    <TableRow
-                      key={month.month}
-                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                    >
-                      <TableCell component="th" scope="row">
-                        {month.month}
-                      </TableCell>
-                      <TableCell align="right">{month.serviceCharge}</TableCell>
-                      <TableCell align="right">{month.highPeak}</TableCell>
-                      <TableCell align="right">{month.lowPeak}</TableCell>
-                      <TableCell align="right">{month.base}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </div>
-          <ToggleButton
-            className={styles.btn}
-            value="check"
-            selected={timePeriodsOpen}
-            onClick={() => {
-              setTimePeriodsOpen(!timePeriodsOpen);
-            }}
-          >
-            Time Periods
-          </ToggleButton>
-          {timePeriodsOpen && <TimeOfUseTimes />}
-        </DialogContent>
-      </BootstrapDialog>
+            <TableBody>
+              {months.map((month) => (
+                <TableRow
+                  key={month.month}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row" align="left">
+                    {month.month}
+                  </TableCell>
+                  <TableCell align="center">{month.serviceCharge}</TableCell>
+                  <TableCell align="center">{month.highPeak}</TableCell>
+                  <TableCell align="center">{month.lowPeak}</TableCell>
+                  <TableCell align="center">{month.base}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+
+      <TimeOfUseTimes />
     </div>
   );
 }

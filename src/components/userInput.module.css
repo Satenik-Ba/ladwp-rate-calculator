@@ -1,14 +1,10 @@
 .container {
   margin: 1rem 1rem;
-  display: flex;
+  display: inline-block;
   justify-content: center;
   flex-direction: row;
   align-items: center;
   padding: 1rem 2rem;
-}
-
-.resetBtn {
-  padding: 0.25rem 2rem;
 }
 
 .userInput {
@@ -17,4 +13,8 @@
   border-radius: 5px;
   height: 2rem;
   margin: 0rem 0.75rem;
+}
+
+h1 {
+  padding: 1rem;
 }
