@@ -28,7 +28,7 @@ export default function ZipCode() {
   return (
     <div>
       <label htmlFor="location" className={styles.selectLabel}>
-        Location:
+        Location
       </label>
 
       <select

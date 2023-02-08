@@ -1,0 +1,11 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  border: 2px solid rgba(65, 90, 119, 0.5);
+  width: 15rem;
+  padding: 0.125rem;
+  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
+}

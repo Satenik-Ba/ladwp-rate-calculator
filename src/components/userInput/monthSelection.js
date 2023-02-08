@@ -3,8 +3,8 @@ import {
   monthSelect,
   CalculateTimeOfUse,
   calculateTiers,
-} from "./Calculations/helper";
-import TotalSumContext from "../store/totalSum-context";
+} from "../Calculations/helper";
+import TotalSumContext from "../../store/totalSum-context";
 import styles from "./monthSelection.module.css";
 
 function MonthSelection() {
@@ -22,9 +22,7 @@ function MonthSelection() {
 
   return (
     <div>
-      <label htmlFor="month" className={styles.selectLabel}>
-        Month:
-      </label>
+      <label htmlFor="month">Month</label>
 
       <select
         name="months"

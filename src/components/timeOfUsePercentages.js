@@ -46,24 +46,26 @@ export default function TimeOfUsePercentages() {
   };
 
   return (
-    <Box sx={{ width: 400 }}>
-      <h2>Time Of Use Percentages</h2>
-      <div className={styles.period_labels}>
-        <span>Base</span>
-        <span>High</span>
-        <span>Low</span>
-      </div>
-      <Slider
-        getAriaLabel={() => "Minimum distance shift"}
-        value={value2}
-        onChange={handleChange2}
-        disableSwap
-      />
-      <div className={styles.period_labels}>
-        <span>{sumCtx.timeOfUsePercentages[0]}</span>
-        <span>{sumCtx.timeOfUsePercentages[1]}</span>
-        <span>{sumCtx.timeOfUsePercentages[2]}</span>
-      </div>
-    </Box>
+    <>
+      <p className={styles.header}>Time Of Use Percentages</p>
+      <Box sx={{ width: 400 }}>
+        <div className={styles.period_labels}>
+          <span>Base</span>
+          <span>High</span>
+          <span>Low</span>
+        </div>
+        <Slider
+          getAriaLabel={() => "Minimum distance shift"}
+          value={value2}
+          onChange={handleChange2}
+          disableSwap
+        />
+        <div className={styles.period_labels}>
+          <span>{`${sumCtx.timeOfUsePercentages[0]}%`}</span>
+          <span>{`${sumCtx.timeOfUsePercentages[1]}%`}</span>
+          <span>{`${sumCtx.timeOfUsePercentages[2]}%`}</span>
+        </div>
+      </Box>
+    </>
   );
 }

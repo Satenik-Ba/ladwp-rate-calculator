@@ -1,5 +1,5 @@
-.selectLabel {
-  margin: 0rem 0.5rem;
+select {
+  background: none;
 }
 
 .label {
@@ -8,5 +8,5 @@
   border: 2px solid rgba(65, 90, 119, 0.5);
   width: 6.25rem;
   font-weight: 600;
-  padding-left: 0.25rem;
+  /* padding-left: 0.25rem; */
 }
