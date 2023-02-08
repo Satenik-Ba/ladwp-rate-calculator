@@ -14,12 +14,15 @@ import HighestTierSystem from "./components/highestTierSystem";
 function App() {
   return (
     <div className={styles.app}>
-      <div className={styles.pricingWrapper}>
-        <Input />
+      <div>
+        <div className={styles.pricingWrapper}>
+          <Input />
+          <MonthSelection />
+          <ZipCode />
+          <HighestTierSystem />
+        </div>
+
         <TimeOfUsePercentages />
-        <MonthSelection />
-        <ZipCode />
-        <HighestTierSystem />
       </div>
       <Analysis />
       <div className={styles.wrapper}>

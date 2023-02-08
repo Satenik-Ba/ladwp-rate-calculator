@@ -25,9 +25,10 @@ function UserInput() {
   }
 
   return (
-    <div className={styles.container}>
-      <h1>Total kWh Usage</h1>
+    <div>
+      <label htmlFor="kwhInput"> Total KWh Usage</label>
       <input
+        id="kwhInput"
         className={styles.userInput}
         type="text"
         maxLength="6"
