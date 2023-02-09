@@ -15,10 +15,9 @@ export default function HighestTierSystem() {
   }
 
   return (
-    <form onChange={handleSelect}>
-      <fieldset className={styles.wrapper}>
-        <legend> Highest Tier Past 12 Months:</legend>
-
+    <div onChange={handleSelect} className={styles.wrapper}>
+      <p>Highest Tier Past 12 Months</p>
+      <div className={styles.tiers}>
         <div>
           <input type="radio" id="tier" name="highest-tier" value="tier1" />
           <label htmlFor="tier">Tier 1</label>
@@ -33,8 +32,8 @@ export default function HighestTierSystem() {
           <input type="radio" id="tier" name="highest-tier" value="tier3" />
           <label htmlFor="tier">Tier 3</label>
         </div>
-      </fieldset>
-    </form>
+      </div>
+    </div>
 
     // <div>
     //   <label htmlFor="month" className={styles.selectLabel}>

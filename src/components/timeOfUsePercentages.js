@@ -8,7 +8,7 @@ import styles from "./timeOfUsePercentages.module.css";
 const minDistance = 10;
 
 export default function TimeOfUsePercentages() {
-  const [value2, setValue2] = useState([30, 80]);
+  const [value2, setValue2] = useState([50, 70]);
 
   const sumCtx = useContext(TotalSumContext);
 
@@ -48,22 +48,17 @@ export default function TimeOfUsePercentages() {
   return (
     <>
       <p className={styles.header}>Time Of Use Percentages</p>
-      <Box sx={{ width: 400 }}>
+      <Box sx={{ width: 350 }}>
         <div className={styles.period_labels}>
-          <span>Base</span>
-          <span>High</span>
-          <span>Low</span>
+          <p>Base</p>
+          <p>High</p>
+          <p>Low</p>
         </div>
-        <Slider
-          getAriaLabel={() => "Minimum distance shift"}
-          value={value2}
-          onChange={handleChange2}
-          disableSwap
-        />
+        <Slider value={value2} onChange={handleChange2} disableSwap />
         <div className={styles.period_labels}>
-          <span>{`${sumCtx.timeOfUsePercentages[0]}%`}</span>
-          <span>{`${sumCtx.timeOfUsePercentages[1]}%`}</span>
-          <span>{`${sumCtx.timeOfUsePercentages[2]}%`}</span>
+          <p>{`${sumCtx.timeOfUsePercentages[0]}%`}</p>
+          <p>{`${sumCtx.timeOfUsePercentages[1]}%`}</p>
+          <p>{`${sumCtx.timeOfUsePercentages[2]}%`}</p>
         </div>
       </Box>
     </>

@@ -26,18 +26,15 @@ export default function ZipCode() {
   };
 
   return (
-    <div>
-      <label htmlFor="location" className={styles.selectLabel}>
-        Location
-      </label>
-
+    <div className={styles.wrapper}>
+      <label htmlFor="location">Location</label>
       <select
         name="location"
         id="location"
         placeholder="Zip Codes"
         required
         onChange={handleChange}
-        className={styles.label}
+        className={styles.zipCode_select}
       >
         {allZipCodes.map((zip) => (
           <option value={zip} key={zip}>

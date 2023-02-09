@@ -1,8 +1,16 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
 .userInput {
   width: 5rem;
-  border: 2px solid rgba(65, 90, 119, 0.5);
   border-radius: 5px;
   height: 2rem;
+  padding-left: 0.25rem;
+  border: 1px solid #1b4965;
 }
 
 input[type="text"]:focus {

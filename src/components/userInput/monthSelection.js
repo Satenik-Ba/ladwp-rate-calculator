@@ -21,14 +21,14 @@ function MonthSelection() {
   }
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <label htmlFor="month">Month</label>
 
       <select
         name="months"
         id="month"
         onChange={handleSelect}
-        className={styles.label}
+        className={styles.month_select}
       >
         <option value="Jan" defaultChecked>
           Jan-March

@@ -1,12 +1,15 @@
-.selectLabel {
-  margin: 0rem 0.5rem;
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
-.label {
+.zipCode_select {
   height: 2rem;
   border-radius: 5px;
-  border: 2px solid rgba(65, 90, 119, 0.5);
   width: 6.25rem;
-  font-weight: 600;
+  font-weight: 500;
   padding-left: 0.25rem;
+  border: 1px solid #1b4965;
 }
