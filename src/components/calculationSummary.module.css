@@ -14,3 +14,13 @@
 .wrapper h3 {
   padding: 0.2rem;
 }
+
+@media only screen and (max-width: 600px) {
+  .wrapper {
+    font-size: 12px !important;
+    width: 23rem !important;
+    height: 30rem !important;
+    margin: 1.5rem;
+    padding-top: 1rem !important;
+  }
+}

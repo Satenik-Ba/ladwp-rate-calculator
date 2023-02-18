@@ -1,5 +1,10 @@
 .header {
   padding-right: 1rem;
+  padding-bottom: 1rem;
+  margin-top: 1rem;
+}
+.header p {
+  margin-bottom: 1rem;
 }
 
 .period_labels {
@@ -8,5 +13,13 @@
   justify-content: space-between;
 }
 span {
-  color: #1b4965;
+  color: #003554;
+}
+
+@media only screen and (max-width: 768px) {
+  .header {
+    display: block;
+    align-items: center;
+    justify-content: center;
+  }
 }

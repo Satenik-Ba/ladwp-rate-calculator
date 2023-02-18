@@ -34,24 +34,5 @@ export default function HighestTierSystem() {
         </div>
       </div>
     </div>
-
-    // <div>
-    //   <label htmlFor="month" className={styles.selectLabel}>
-    //     Highest Tier past 12 months{" "}
-    //   </label>
-
-    //   <select
-    //     name="months"
-    //     id="month"
-    //     onChange={handleSelect}
-    //     className={styles.label}
-    //   >
-    //     <option value="tier1" defaultChecked>
-    //       Tier 1
-    //     </option>
-    //     <option value="tier2">Tier 2</option>
-    //     <option value="tier3">Tier 3</option>
-    //   </select>
-    // </div>
   );
 }

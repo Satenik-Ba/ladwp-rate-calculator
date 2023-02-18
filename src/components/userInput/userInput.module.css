@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  margin: 2rem 1rem;
 }
 
 .userInput {
@@ -12,7 +13,21 @@
   padding-left: 0.25rem;
   border: 1px solid #1b4965;
 }
+input[type="text"] {
+  background: none;
+}
 
 input[type="text"]:focus {
   outline: 2px solid #1b4965;
+}
+
+@media only screen and (max-width: 1200px) {
+  .wrapper {
+    margin: 1rem 0.5rem;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    margin: 0.5rem 0.25rem;
+  }
 }

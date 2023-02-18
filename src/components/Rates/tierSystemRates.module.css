@@ -2,14 +2,8 @@
   padding: 0rem;
   margin: 1rem 1rem 1rem 1rem;
   box-shadow: 2px 2px 4px 4px rgba(65, 90, 119, 0.5) !important;
+  width: 40rem !important;
 }
-/* .btn {
-  margin: 1rem !important;
-  border-radius: 5px !important;
-  border: 1px solid #25384d !important;
-  background-color: #415a77 !important;
-  color: #fff !important;
-} */
 
 .header {
   color: #25384d;
@@ -17,4 +11,10 @@
   padding: 0.4rem;
   margin-top: 0.5rem;
   align-self: center;
+}
+
+@media only screen and (max-width: 700px) {
+  .wrapper {
+    width: 35rem !important;
+  }
 }

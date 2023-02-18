@@ -1,6 +1,7 @@
 .wrapper {
   width: 40%;
-  margin: 0.25rem auto;
+  margin: 1rem auto;
+  margin-top: 5rem;
   padding: 0.25rem 1rem;
   color: #18222d;
   border: 1px solid #415a77;
@@ -21,4 +22,16 @@
   color: white;
   padding: 0.135rem;
   margin: 0.155rem;
+}
+
+@media only screen and (max-width: 1200px) {
+  .wrapper {
+    width: 30rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .wrapper {
+    width: 23rem;
+  }
 }

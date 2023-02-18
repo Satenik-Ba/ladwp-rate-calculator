@@ -46,8 +46,8 @@ export default function TimeOfUsePercentages() {
   };
 
   return (
-    <>
-      <p className={styles.header}>Time Of Use Percentages</p>
+    <div className={styles.header}>
+      <p>Time Of Use Percentage Breakdown</p>
       <Box sx={{ width: 350 }}>
         <div className={styles.period_labels}>
           <p>Base</p>
@@ -61,6 +61,6 @@ export default function TimeOfUsePercentages() {
           <p>{`${sumCtx.timeOfUsePercentages[2]}%`}</p>
         </div>
       </Box>
-    </>
+    </div>
   );
 }

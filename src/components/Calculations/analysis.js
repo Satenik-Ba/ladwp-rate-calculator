@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import TotalSumContext from "../store/totalSum-context";
+import TotalSumContext from "../../store/totalSum-context";
 import styles from "./analysis.module.css";
 import { styled } from "@mui/material/styles";
 
