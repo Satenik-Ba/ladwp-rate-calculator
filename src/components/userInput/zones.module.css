@@ -5,6 +5,10 @@
   align-items: flex-start;
   margin: 2rem 1rem;
 }
+.wrapper label {
+  font-weight: 700;
+  margin-right: 0.3rem;
+}
 
 .zipCode_select {
   height: 2rem;

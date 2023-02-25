@@ -9,6 +9,11 @@ select {
   margin: 2rem 1rem;
 }
 
+.wrapper label {
+  font-weight: 700;
+  margin-right: 1.25rem;
+}
+
 .month_select {
   height: 2rem;
   border-radius: 5px;

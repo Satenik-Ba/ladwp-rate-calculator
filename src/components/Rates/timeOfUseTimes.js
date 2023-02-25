@@ -5,7 +5,8 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import styles from "./timeOfUseRates.module.css";
+import styles from "./rateDialogTimeOfUse.module.css";
+import { TableHead } from "@mui/material";
 
 function createData(peakPeriod, times) {
   return { peakPeriod, times };
@@ -31,8 +32,15 @@ function TimeOfUseRates() {
     <div className={styles.wrapper}>
       {" "}
       <TableContainer component={Paper}>
-        <h2 className={styles.header}>Time of Use Time Periods</h2>
-        <Table sx={{ maxWidth: 640 }} aria-label="simple table">
+        <Table aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="center" colSpan={4}>
+                <h2 className={styles.header}>Time of Use Time Periods</h2>
+              </TableCell>
+            </TableRow>
+          </TableHead>
+
           <TableBody>
             {months.map((peakPeriod) => (
               <TableRow

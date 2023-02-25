@@ -41,7 +41,21 @@ import {
   TierThreeAllowenceZone2,
 } from "../../constants/constants";
 
-let month = "Jan";
+const date = new Date();
+let monthNum = date.getMonth();
+let month;
+if (monthNum === 0 || monthNum === 1 || monthNum === 2) {
+  month = "Jan";
+} else if (monthNum === 3 || monthNum === 4) {
+  month = "April";
+} else if (monthNum === 5) {
+  month = "June";
+} else if (monthNum === 6 || monthNum === 7 || monthNum === 8) {
+  month = "July";
+} else if (monthNum === 9 || monthNum === 10 || monthNum === 11) {
+  month = "Oct";
+}
+
 export function monthSelect(selectedMonth) {
   month = selectedMonth;
 }

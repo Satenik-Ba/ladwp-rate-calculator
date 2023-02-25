@@ -1,11 +1,20 @@
 .wrapper {
   display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   margin: 2rem 1rem;
 }
 
+input[type="radio"] {
+  accent-color: #003554;
+}
+
+.wrapper span:first-child {
+  font-weight: 700;
+  color: black;
+}
 .tiers {
   display: flex;
   justify-content: space-between;
@@ -24,7 +33,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .wrapper {
+  /* .wrapper {
     margin: 0.5rem 0.25rem;
-  }
+  } */
 }

@@ -7,7 +7,6 @@ export default function HighestTierSystem() {
   const sumCtx = useContext(TotalSumContext);
 
   function handleSelect(e) {
-    console.log(e.target.value);
     sumCtx.tierFunc(e.target.value);
     sumCtx.totalSumTierFunc(
       calculateTiers(sumCtx.kwUsed, e.target.value, sumCtx.zone)
@@ -16,10 +15,16 @@ export default function HighestTierSystem() {
 
   return (
     <div onChange={handleSelect} className={styles.wrapper}>
-      <p>Highest Tier Past 12 Months</p>
+      <span>Highest Tier Past 12 Months</span>
       <div className={styles.tiers}>
         <div>
-          <input type="radio" id="tier" name="highest-tier" value="tier1" />
+          <input
+            type="radio"
+            id="tier"
+            name="highest-tier"
+            value="tier1"
+            defaultChecked
+          />
           <label htmlFor="tier">Tier 1</label>
         </div>
 

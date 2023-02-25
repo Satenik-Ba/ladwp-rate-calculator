@@ -1,0 +1,29 @@
+.wrapper {
+  padding: 0rem !important;
+  margin: 1rem 0.5rem !important;
+  width: auto !important;
+  box-shadow: 2px 2px 4px 4px rgba(65, 90, 119, 0.5) !important;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.header {
+  color: #25384d;
+  font-weight: 500;
+  align-self: center;
+}
+
+@media only screen and (max-width: 570px) {
+  .wrapper {
+    margin: 0.5rem 0rem;
+    width: 100% !important;
+  }
+  .wrapper td {
+    font-size: 12px;
+  }
+  .wrapper th {
+    font-size: 12px;
+  }
+}

@@ -1,26 +1,35 @@
 .wrapper {
-  background-image: linear-gradient(
-    to bottom,
-    rgba(141, 152, 165, 0.1),
-    rgba(88, 98, 110, 0.4)
-  ) !important;
-  width: 30rem !important;
-  height: 32rem !important;
-  margin: 1.5rem;
-  padding-top: 2rem !important;
-  box-shadow: 2px 2px 4px 4px rgba(65, 90, 119, 0.5) !important;
+  width: 36rem !important;
+  margin: 1rem 1.5rem;
+  /* box-shadow: 2px 2px 4px 4px rgba(65, 90, 119, 0.5) !important; */
+  overflow: hidden !important;
 }
 
-.wrapper h3 {
-  padding: 0.2rem;
+.wrapper td {
+  color: black;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: Courier !important;
+  height: 1rem !important;
+}
+
+.wrapper td:last-child {
+  width: 0.5rem !important;
+  font-weight: 600;
+}
+.wrapper p {
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 @media only screen and (max-width: 600px) {
-  .wrapper {
+  /* .wrapper {
     font-size: 12px !important;
     width: 23rem !important;
     height: 30rem !important;
     margin: 1.5rem;
     padding-top: 1rem !important;
-  }
+  } */
 }
