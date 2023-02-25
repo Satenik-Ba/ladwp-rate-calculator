@@ -27,7 +27,7 @@ export default function ZipCode() {
 
   return (
     <div className={styles.wrapper}>
-      <label htmlFor="location">Location</label>
+      <label htmlFor="location">Zip Codes</label>
       <select
         name="location"
         id="location"

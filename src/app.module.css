@@ -1,41 +1,23 @@
 .app {
-  text-align: center;
   background-color: #fff;
-}
-
-.input_wrapper {
-  margin: 0rem auto;
-  width: 100%;
-  /* background-color: rgba(26, 101, 158, 0.05); */
 }
 
 .userInput {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 5rem 0rem;
 }
 
-hr {
-  border: 1px solid rgba(27, 73, 101, 0.307);
-  width: 50%;
-  margin: 0 auto;
-}
-
-.timeofusePercWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-.pricingWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: top;
-  margin: 2rem;
-}
 .wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 40rem;
+  border: 1px solid rgb(27, 73, 101);
+  background-color: rgba(210, 209, 209, 0.3);
+  margin: 1rem auto;
+}
+
+.summary_wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,29 +25,18 @@ hr {
   margin-top: 2rem;
 }
 
-@media only screen and (max-width: 1200px) {
-  .wrapper {
-    display: inline-block;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1rem;
-  }
-  .pricingWrapper {
-    display: inline-block;
-    justify-content: center;
-    align-items: center;
-  }
-}
-
 @media only screen and (max-width: 768px) {
   .userInput {
-    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+  }
+  .summary_wrapper {
     flex-wrap: wrap;
     margin: 0.5rem;
   }
-}
-@media only screen and (max-width: 600px) {
   .wrapper {
-    width: 23rem;
+    width: 80%;
   }
 }

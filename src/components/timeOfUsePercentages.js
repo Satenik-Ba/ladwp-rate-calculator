@@ -47,18 +47,59 @@ export default function TimeOfUsePercentages() {
 
   return (
     <div className={styles.header}>
-      <p>Time Of Use Percentage Breakdown</p>
-      <Box sx={{ width: 350 }}>
+      <p className={styles.ittle}>Time Of Use Percentage Breakdown</p>
+      <Box>
         <div className={styles.period_labels}>
-          <p>Base</p>
-          <p>High</p>
-          <p>Low</p>
+          <p
+            style={{
+              margin: `0 ${sumCtx.timeOfUsePercentages[0]}px`,
+              width: `${sumCtx.timeOfUsePercentages[0]}px`,
+            }}
+          >
+            Base
+          </p>
+          <p
+            style={{
+              margin: `0 ${sumCtx.timeOfUsePercentages[1]}px`,
+              width: `${sumCtx.timeOfUsePercentages[1]}px`,
+            }}
+          >
+            High
+          </p>
+          <p
+            style={{
+              margin: `0 ${sumCtx.timeOfUsePercentages[2]}px`,
+              width: `${sumCtx.timeOfUsePercentages[2]}px`,
+            }}
+          >
+            Low
+          </p>
         </div>
-        <Slider value={value2} onChange={handleChange2} disableSwap />
+        <Slider
+          value={value2}
+          onChange={handleChange2}
+          disableSwap
+          className={styles.slider}
+        />
         <div className={styles.period_labels}>
-          <p>{`${sumCtx.timeOfUsePercentages[0]}%`}</p>
-          <p>{`${sumCtx.timeOfUsePercentages[1]}%`}</p>
-          <p>{`${sumCtx.timeOfUsePercentages[2]}%`}</p>
+          <p
+            style={{
+              margin: `0 ${sumCtx.timeOfUsePercentages[0]}px`,
+              width: `${sumCtx.timeOfUsePercentages[0]}px`,
+            }}
+          >{`${sumCtx.timeOfUsePercentages[0]}%`}</p>
+          <p
+            style={{
+              margin: `0 ${sumCtx.timeOfUsePercentages[1]}px`,
+              width: `${sumCtx.timeOfUsePercentages[1]}px`,
+            }}
+          >{`${sumCtx.timeOfUsePercentages[1]}%`}</p>
+          <p
+            style={{
+              margin: `0 ${sumCtx.timeOfUsePercentages[2]}px`,
+              width: `${sumCtx.timeOfUsePercentages[2]}px`,
+            }}
+          >{`${sumCtx.timeOfUsePercentages[2]}%`}</p>
         </div>
       </Box>
     </div>

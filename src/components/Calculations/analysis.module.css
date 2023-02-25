@@ -1,23 +1,27 @@
 .wrapper {
-  width: 40%;
-  margin: 1rem auto;
-  margin-top: 5rem;
+  width: 50%;
+  margin: auto;
+  margin-top: 2rem;
   padding: 0.25rem 1rem;
   color: #18222d;
   border: 1px solid #415a77;
   box-shadow: 3px 3px 2px #97a8bb;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  text-align: center;
 }
 
 .savings {
-  background-color: rgba(65, 90, 119, 0.9);
+  background-color: rgba(70, 119, 65, 0.8);
   border-radius: 3px;
+  white-space: nowrap;
   color: white;
   padding: 0.135rem;
   margin: 0.135rem;
 }
 
 .bestPlan {
-  background-color: rgba(65, 90, 119, 0.9);
+  background-color: rgba(70, 119, 65, 0.8);
   border-radius: 3px;
   color: white;
   padding: 0.135rem;
@@ -25,13 +29,14 @@
 }
 
 @media only screen and (max-width: 1200px) {
-  .wrapper {
+  /* .wrapper {
     width: 30rem;
-  }
+  } */
 }
 
 @media only screen and (max-width: 600px) {
   .wrapper {
-    width: 23rem;
+    font-size: 0.9rem !important;
+    width: 80%;
   }
 }

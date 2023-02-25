@@ -5,10 +5,8 @@ import Input from "./components/UserInput/userInput";
 import Analysis from "./components/Calculations/analysis";
 import MonthSelection from "./components/UserInput/monthSelection";
 import styles from "./app.module.css";
-import TimeOfUseRates from "./components/Rates/timeOfUseRates";
-import TierSystemRates from "./components/Rates/tierSystemRates";
 import TimeOfUsePercentages from "./components/timeOfUsePercentages";
-import ZipCode from "./components/Zones/zones";
+import ZipCode from "./components/UserInput/zones";
 import HighestTierSystem from "./components/UserInput/highestTierSystem";
 import Nav from "./components/Navigation/nav";
 
@@ -16,26 +14,19 @@ function App() {
   return (
     <div className={styles.app}>
       <Nav />
-      <div className={styles.input_wrapper}>
+      <div className={styles.wrapper}>
         <div className={styles.userInput}>
           <Input />
           <MonthSelection />
           <ZipCode />
           <HighestTierSystem />
         </div>
-        <hr />
-        <div className={styles.timeofusePercWrapper}>
-          <TimeOfUsePercentages />
-        </div>
+        <TimeOfUsePercentages />
       </div>
       <Analysis />
-      <div className={styles.wrapper}>
+      <div className={styles.summary_wrapper}>
         <Tier />
         <Time />
-      </div>
-      <div className={styles.pricingWrapper}>
-        <TierSystemRates />
-        <TimeOfUseRates />
       </div>
     </div>
   );

@@ -17,16 +17,17 @@ function Analysis() {
     Math.min(ctx.totalSumTier.sum, ctx.totalSumTime.sum);
 
   const bestPlan =
-    ctx.totalSumTier.sum < ctx.totalSumTime.sum ? "Tier System" : "Time Of Use";
+    parseInt(ctx.totalSumTier.sum) < parseInt(ctx.totalSumTime.sum)
+      ? "Tier System"
+      : "Time Of Use";
 
   if (ctx.kwUsed) {
     return (
       <Div className={styles.wrapper}>
-        Based on the average total kWh usage, you can save{" "}
-        <span className={styles.savings}>$ {savings.toFixed(2)}</span> by
-        switching to
-        {""}
-        <span className={styles.bestPlan}>{bestPlan} </span> rate plan.
+        Based on the total average kWh usage,{" "}
+        <span className={styles.bestPlan}>{bestPlan} </span> rate plan costs are
+        less by
+        <span className={styles.savings}>$ {savings.toFixed(2)}</span>.
       </Div>
     );
   } else {

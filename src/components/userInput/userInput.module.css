@@ -5,6 +5,10 @@
   align-items: flex-start;
   margin: 2rem 1rem;
 }
+.wrapper label {
+  font-weight: 700;
+  margin-right: 2rem;
+}
 
 .userInput {
   width: 5rem;

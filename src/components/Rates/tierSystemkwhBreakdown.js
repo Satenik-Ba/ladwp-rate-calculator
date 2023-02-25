@@ -6,7 +6,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import styles from "./timeOfUseRates.module.css";
+import styles from "./rateDialogTierSystem.module.css";
 
 function createData(tier, zone1M, zone1BM, zone2M, zone2BM) {
   return {
@@ -48,7 +48,7 @@ export default function TierSystemkwhBreakdown() {
       <div className={styles.wrapper}>
         {" "}
         <TableContainer component={Paper}>
-          <Table sx={{ maxWidth: 640 }} aria-label="simple table">
+          <Table aria-label="simple table">
             <TableHead>
               <TableRow>
                 <TableCell align="center" colSpan={5}>

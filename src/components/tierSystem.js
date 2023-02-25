@@ -1,16 +1,16 @@
-import React, { useContext } from "react";
-import Paper from "@mui/material/Paper";
+import React, { useContext, useState, useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import styles from "./calculationSummary.module.css";
 import TotalSumContext from "../store/totalSum-context";
+import CheckIcon from "@mui/icons-material/Check";
 
 export default function CalculationSummaryTierSystem() {
   const sumCtx = useContext(TotalSumContext);
+
+  const [betterOption, setBetterOption] = useState(false);
 
   function createData(category, calculation, amount) {
     return { category, calculation, amount };
@@ -19,23 +19,23 @@ export default function CalculationSummaryTierSystem() {
   const categoryBreakdown = [
     createData(
       "Tier 1",
-      `${sumCtx.totalSumTier.tier1}kWh x ${sumCtx.totalSumTier.tier1Price}`,
+      `${sumCtx.totalSumTier.tier1}kWh x $${sumCtx.totalSumTier.tier1Price}`,
       `$${sumCtx.totalSumTier.tier1Calc}`
     ),
     createData(
       "Tier 2",
-      `${sumCtx.totalSumTier.tier2}kWh x ${sumCtx.totalSumTier.tier2Price}`,
+      `${sumCtx.totalSumTier.tier2}kWh x $${sumCtx.totalSumTier.tier2Price}`,
       `$${sumCtx.totalSumTier.tier2Calc}`
     ),
     createData(
       "Tier 3",
-      `${sumCtx.totalSumTier.tier3}kWh x ${sumCtx.totalSumTier.tier3Price}`,
+      `${sumCtx.totalSumTier.tier3}kWh x $${sumCtx.totalSumTier.tier3Price}`,
       `$${sumCtx.totalSumTier.tier3Calc}`
     ),
     createData(
       "Power Access Charge",
       ``,
-      `$ ${sumCtx.totalSumTier.powerAccessCharge}`
+      `$${sumCtx.totalSumTier.powerAccessCharge}`
     ),
     createData("Tax", ``, `$${sumCtx.totalSumTier.tax}`),
     createData(
@@ -43,26 +43,49 @@ export default function CalculationSummaryTierSystem() {
       ``,
       `$${sumCtx.totalSumTier.stateEnergySurcharge}`
     ),
-    createData("Sum", ``, `$${sumCtx.totalSumTier.sum}`),
+    createData("Total", ``, `$${sumCtx.totalSumTier.sum}`),
   ];
 
-  return (
-    <TableContainer component={Paper} className={styles.wrapper}>
-      <h3>Tier System Price Summary</h3>
-      <Table sx={{ maxWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell align="left">Category </TableCell>
-            <TableCell align="left">kWh x Price </TableCell>
-            <TableCell align="right">Amount</TableCell>
-          </TableRow>
-        </TableHead>
+  useEffect(() => {
+    if (parseInt(sumCtx.totalSumTier.sum) < parseInt(sumCtx.totalSumTime.sum)) {
+      setBetterOption(true);
+    } else {
+      setBetterOption(false);
+    }
+  }, [sumCtx.totalSumTier.sum, sumCtx.totalSumTime.sum]);
 
+  return (
+    <div
+      className={styles.wrapper}
+      style={{
+        boxShadow: betterOption
+          ? "2px 2px 4px 4px rgba(70, 119, 65, 0.9)"
+          : "1px 1px 2px 2px rgba(65, 90, 119, 0.5)",
+      }}
+    >
+      <p>
+        Tier System Price Summary{" "}
+        {betterOption && (
+          <CheckIcon
+            sx={{
+              color: "rgb(70, 119, 65)",
+              fontSize: "1.5rem",
+            }}
+          />
+        )}
+      </p>
+
+      <Table sx={{ borderTop: 0.5 }} aria-label="simple table">
         <TableBody>
           {categoryBreakdown.map((category) => (
             <TableRow
               key={category.category}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              sx={{
+                "&:nth-child(6) td, &:nth-child(6) th": {
+                  borderBottom: "2px dotted #003554",
+                },
+                "&:last-child td, &:last-child th": { border: 0 },
+              }}
             >
               <TableCell align="left">{category.category}</TableCell>
               <TableCell align="left">{category.calculation}</TableCell>
@@ -71,6 +94,6 @@ export default function CalculationSummaryTierSystem() {
           ))}
         </TableBody>
       </Table>
-    </TableContainer>
+    </div>
   );
 }
