@@ -28,12 +28,18 @@ input[type="radio"] {
 
 @media only screen and (max-width: 1200px) {
   .wrapper {
-    margin: 1rem 0.5rem;
+    margin: 0.5rem 0rem;
   }
 }
 
 @media only screen and (max-width: 768px) {
-  /* .wrapper {
-    margin: 0.5rem 0.25rem;
-  } */
+  .wrapper span:first-child {
+    font-size: 0.9rem;
+    align-self: center;
+  }
+  .tiers {
+    font-size: 0.9rem;
+    height: 1.5rem;
+    width: 13rem;
+  }
 }

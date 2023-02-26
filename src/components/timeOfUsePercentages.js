@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import styles from "./timeOfUsePercentages.module.css";
 
-const minDistance = 10;
+const minDistance = 5;
 
 export default function TimeOfUsePercentages() {
   const [value2, setValue2] = useState([50, 70]);
@@ -47,7 +47,7 @@ export default function TimeOfUsePercentages() {
 
   return (
     <div className={styles.header}>
-      <p className={styles.ittle}>Time Of Use Percentage Breakdown</p>
+      <p className={styles.title}>Time Of Use Percentage Breakdown</p>
       <Box>
         <div className={styles.period_labels}>
           <p
@@ -80,6 +80,7 @@ export default function TimeOfUsePercentages() {
           onChange={handleChange2}
           disableSwap
           className={styles.slider}
+          size="large"
         />
         <div className={styles.period_labels}>
           <p

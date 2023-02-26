@@ -24,12 +24,17 @@
   font-weight: 500;
 }
 
-@media only screen and (max-width: 600px) {
-  /* .wrapper {
-    font-size: 12px !important;
-    width: 23rem !important;
-    height: 30rem !important;
-    margin: 1.5rem;
-    padding-top: 1rem !important;
-  } */
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    margin: 0.6rem 0.75rem;
+  }
+  .wrapper td {
+    font-size: 14px;
+    padding: 0.2rem !important;
+  }
+  .wrapper p {
+    padding: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
 }

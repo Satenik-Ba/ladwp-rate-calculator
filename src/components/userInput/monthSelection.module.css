@@ -32,4 +32,7 @@ select {
   .wrapper {
     margin: 0.5rem 0.25rem;
   }
+  .wrapper label {
+    font-size: 0.9rem;
+  }
 }

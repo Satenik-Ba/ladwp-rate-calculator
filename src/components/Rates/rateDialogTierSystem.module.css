@@ -15,7 +15,7 @@
   align-self: center;
 }
 
-@media only screen and (max-width: 570px) {
+@media only screen and (max-width: 768px) {
   .wrapper {
     margin: 0.5rem 0rem;
     width: 100% !important;
@@ -25,5 +25,9 @@
   }
   .wrapper th {
     font-size: 12px;
+  }
+  .btn {
+    font-size: 0.8rem;
+    text-align: center;
   }
 }

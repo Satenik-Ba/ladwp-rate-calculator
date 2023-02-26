@@ -28,9 +28,10 @@
   .nav_icons {
     margin-top: 0.5rem;
     text-decoration: none;
+    text-align: center;
   }
 
   .nav_icons li a {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
 }
