@@ -2,7 +2,6 @@ import React from "react";
 import Tier from "./components/tierSystem";
 import Time from "./components/timeSystem";
 import Input from "./components/UserInput/userInput";
-import Analysis from "./components/Calculations/analysis";
 import MonthSelection from "./components/UserInput/monthSelection";
 import styles from "./app.module.css";
 import TimeOfUsePercentages from "./components/timeOfUsePercentages";
@@ -20,10 +19,9 @@ function App() {
           <MonthSelection />
           <ZipCode />
           <HighestTierSystem />
+          <TimeOfUsePercentages />
         </div>
-        <TimeOfUsePercentages />
       </div>
-      <Analysis />
       <div className={styles.summary_wrapper}>
         <Tier />
         <Time />

@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
+import Analysis from "./Calculations/analysis";
+import TotalSumContext from "../store/totalSum-context";
+import styles from "./calculationSummary.module.css";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import styles from "./calculationSummary.module.css";
-import TotalSumContext from "../store/totalSum-context";
+
 import CheckIcon from "@mui/icons-material/Check";
 
 export default function CalculationSummaryTimeOfUse() {
@@ -59,10 +61,11 @@ export default function CalculationSummaryTimeOfUse() {
       className={styles.wrapper}
       style={{
         boxShadow: betterOption
-          ? "2px 2px 4px 4px rgba(70, 119, 65, 0.9)"
+          ? "2px 2px 2px 2px rgba(70, 119, 65, 0.9)"
           : "1px 1px 2px 2px rgba(65, 90, 119, 0.5)",
       }}
     >
+      {betterOption && <Analysis />}
       <p>Time of Use Price Summary {betterOption && <CheckIcon />}</p>
       <Table sx={{ borderTop: 0.5 }} aria-label="simple table">
         <TableBody>

@@ -1,7 +1,6 @@
 .wrapper {
   width: 36rem !important;
   margin: 1rem 1.5rem;
-  /* box-shadow: 2px 2px 4px 4px rgba(65, 90, 119, 0.5) !important; */
   overflow: hidden !important;
 }
 
@@ -9,6 +8,7 @@
   color: black;
   font-size: 14px;
   font-weight: 500;
+  padding: 0.8rem !important;
   font-family: Courier !important;
   height: 1rem !important;
 }
@@ -21,7 +21,7 @@
   padding: 0.5rem;
   text-align: center;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 @media only screen and (max-width: 768px) {
@@ -30,7 +30,7 @@
   }
   .wrapper td {
     font-size: 14px;
-    padding: 0.2rem !important;
+    padding: 0.6rem !important;
   }
   .wrapper p {
     padding: 0.4rem;

@@ -1,12 +1,9 @@
 .wrapper {
-  width: 50%;
+  width: 100%;
   margin: auto;
-  margin-top: 2rem;
-  padding: 0.25rem 1rem;
+  margin-top: 1rem;
   color: #18222d;
-  border: 1px solid #415a77;
-  box-shadow: 3px 3px 2px #97a8bb;
-  font-weight: 700 !important;
+  font-weight: 500 !important;
   font-size: 1rem !important;
   text-align: center;
 }
@@ -31,7 +28,7 @@
 @media only screen and (max-width: 768px) {
   .wrapper {
     font-size: 0.8rem !important;
-    width: 85%;
+    width: 90%;
     margin-top: 0.5rem;
   }
 }

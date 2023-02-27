@@ -25,9 +25,10 @@ function Analysis() {
     return (
       <Div className={styles.wrapper}>
         Based on the total average kWh usage,{" "}
-        <span className={styles.bestPlan}>{bestPlan} </span> rate plan costs are
-        less by
-        <span className={styles.savings}>$ {savings.toFixed(2)}</span>.
+        <span className={styles.bestPlan}>{bestPlan} </span> rate plan can save
+        you up to
+        <span className={styles.savings}>$ {savings.toFixed(2)}</span> per pay
+        period.
       </Div>
     );
   } else {

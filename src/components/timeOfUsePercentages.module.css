@@ -1,28 +1,29 @@
 .header {
-  padding-bottom: 1rem;
+  padding-bottom: 0rem;
   margin: 0rem auto;
 }
 .title {
-  margin-bottom: 1rem;
+  margin-bottom: 0.4rem;
   font-weight: 700;
   text-align: center;
 }
 .period_labels {
   display: flex;
   align-items: center;
+  margin: 0rem 1rem;
+  margin-bottom: 0.3rem;
 }
-
+.period_labels p {
+  font-size: 0.9rem;
+}
 .slider {
   color: #003554 !important;
-  width: 20rem !important;
+  width: 100% !important;
 }
 
 @media only screen and (max-width: 768px) {
   .period_labels p {
     font-size: 0.9rem;
-  }
-  .slider {
-    width: 19rem !important;
   }
   .slider span:nth-child(3) {
     height: 14px;
