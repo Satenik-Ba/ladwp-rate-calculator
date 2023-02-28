@@ -9,6 +9,8 @@ Standard Residential Rate power access charge also depends on the highest tier s
 
 Time of Use Residential Rates have 3 periods during the day, High Peak, Low Peak, and Base. Base rates are the lowest compared to High Peak rates. 
 
+## Demo
+
 https://satenik-ba.github.io/ladwp-price-per-kWh/
 
 <img width="1303" alt="Screen Shot 2023-02-24 at 10 34 55 PM" src="https://user-images.githubusercontent.com/79809138/221342635-27be3d8f-9c43-4585-857b-bc05a1cb3b0f.png">
